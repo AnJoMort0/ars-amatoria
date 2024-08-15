@@ -5,7 +5,7 @@ Welcome to **Ars Amatoria**, an immersive and mind-bending interactive fiction e
 
 ## Project Status and Language 🚧💻
 
-Ars Amatoria: Manipulation is a work in progress and a school project. The interactive fiction is written in Inform 7.
+Ars Amatoria: Manipulation is a work in progress and a school project. The interactive fiction is written in Javascript.
 
 ## Overview 🌟
 
