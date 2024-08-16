@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #2f1a26;
+    color: #e0c3c3;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    scrollbar-color: #2f1a26 #472233;
+    scrollbar-gutter: stable;
+}
+
+.story-text {
+    font-size: 1.5em;
+    line-height: 1.6;
+    white-space: pre-line;
+    visibility: visible;
+}
+    .text-alternate-1 {
+        color: #e0c3c3;
+    }
+    .text-alternate-2 {
+        color: #b39b9b;
+    }
+
+.input-bar {
+    position: fixed;
+    background-color: #472233;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.words-wrapper {
+    display: grid;
+    width: 100%;
+    max-width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; /* Minimum space between the boxes */
+    padding-bottom: 15px;
+}
+    .word-container {
+        width: 100%;
+        max-width: 246px;
+        padding: 5px;
+        justify-self: center;
+        background-color: #472233;
+        border: 2px solid #e0c3c3;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        font-size: 1.5em;
+        line-height: 1.6;
+        color: #e0c3c3;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+
+#player-input {
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #e0c3c3;
+    border: 2px solid #e0c3c3;
+    background-color: #2f1a26;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.hidden-letter {
+    margin: 0 2px;
+    font-weight: bold;
+    color: #e0c3c3;
+}
+
+::placeholder {
+    color: #e0c3c3;
+    opacity: 0.7;
+}
