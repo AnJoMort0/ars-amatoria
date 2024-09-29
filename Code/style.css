@@ -12,13 +12,12 @@ body {
 
 .main-content {
     display: flex;
+    justify-content: center;
+    position: relative;
     width: 100%;
-    max-width: 1000px;
-    flex-grow: 1;
+    max-width: 1200px;
     box-sizing: border-box;
     overflow: hidden;
-    margin-top: 20px;
-    flex: 1;
 }
 
 .container {
@@ -118,9 +117,11 @@ body {
 .control-panel {
     width: 200px;
     background-color: #472233;
-    color: #e0c3c3;
     padding: 10px;
     box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    height: 100%;
 }
     .animation-control {
         background-color: #472233;
