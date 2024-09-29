@@ -165,6 +165,8 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             // Skip the animation
             element.innerHTML  += text;
             animationInProgress = false;
+            // Scroll to bottom after adding text
+            container.scrollTop = container.scrollHeight;
             if (callback) callback();
             return;
         }
@@ -173,11 +175,15 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             if (index < text.length && animationInProgress) {
                 element.innerHTML += text.charAt(index);
                 index++;
+                // Scroll to bottom after adding a character
+                container.scrollTop = container.scrollHeight;
                 setTimeout(typeNextChar, currentAnimSpeed);
             } else {
                 // Animation finished
                 animationInProgress = false;
-                removeEventListeners(); // chatGPT fix
+                removeEventListeners();
+                // Ensure the container is scrolled to the bottom
+                container.scrollTop = container.scrollHeight;
                 if (callback) callback();
             }
         }
