@@ -10,9 +10,21 @@ body {
     overflow: hidden;
 }
 
+.main-content {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 20px;
+    flex: 1;
+}
+
 .container {
     width: 100%;
     max-width: 800px;
+    height: 100vh;
     flex-grow: 1;
     box-sizing: border-box;
     display: flex;
@@ -102,3 +114,57 @@ body {
             border-radius: 8px;
             box-sizing: border-box;
         }
+
+.control-panel {
+    width: 200px;
+    background-color: #472233;
+    color: #e0c3c3;
+    padding: 10px;
+    box-sizing: border-box;
+}
+    .animation-control {
+        background-color: #472233;
+        color: #e0c3c3;
+        padding: 10px;
+        border: 2px solid #e0c3c3;
+        border-radius: 8px;
+        font-family: 'Playfair Display', serif;
+        box-sizing: border-box;
+    }
+
+    .control-label {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .control-selector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .control-button {
+        background-color: #2f1a26;
+        color: #e0c3c3;
+        border: none;
+        font-size: 1.5em;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .control-button:hover {
+        background-color: #3e1b2d;
+    }
+
+    #currentSpeed {
+        margin: 0 10px;
+        font-size: 1.2em;
+    }
+
+    .speed-hint {
+        margin-top: 10px;
+        font-size: 0.9em;
+        text-align: center;
+        white-space: pre-wrap;
+    }

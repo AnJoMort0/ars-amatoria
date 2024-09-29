@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     // GENERAL VALUES
-    const DEFAULT_ANIM_SPEED    = 20;                   // For the text animation
+    const DEFAULT_ANIM_SPEED    = 20;       // For the text animation
     const FASTER_ANIM_SPEED     = 5;
-    let currentState            = 'intro';              // Starting state is 'intro'
+    let currentState            = 'intro';  // Starting state is 'intro'
     let animationInProgress     = false;
-    let alternate               = false;                // For the text colour
+    let alternate               = false;    // For the text colour
 
     // Placeholder texts
     const d = "What do you do?";
@@ -32,8 +32,7 @@ There she is, standing in the corridor, the girl I've barely spoken to all semes
 She's laughing.
 My heart races; this is my chance, maybe my last chance,
 once again...
-one more time...`
-,
+one more time...`,
             [
                 ['look', 'look_classroom'],
                 ['walk', 'walk_from_classroom'],
@@ -98,45 +97,78 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             e
         ],
     };
-    
-    // Get references to elements
-    const container         = document.getElementById('container');
-    const playerInput       = document.getElementById('playerInput');
-    const inputBar          = document.getElementById('inputBar');
 
+    // Animation speed control
+    const animationSpeeds = ['Normal', 'Fast', 'None'];
+    let currentSpeedIndex = 0; // Default to 'Normal'
+
+    // Load saved animation speed from localStorage
+    if (localStorage.getItem('animationSpeed')) {
+        const savedSpeed    = localStorage.getItem('animationSpeed');
+        currentSpeedIndex   = animationSpeeds.indexOf(savedSpeed);
+        if (currentSpeedIndex === -1) {
+            currentSpeedIndex = 0; // Default to 'Normal' if not found
+        }
+    }
+
+    // Load unlocked choices from localStorage
+    let unlockedChoices = {};
+    if (localStorage.getItem('unlockedChoices')) {
+        unlockedChoices = JSON.parse(localStorage.getItem('unlockedChoices'));
+    }
+
+    // Get references to elements
+    const container     = document.getElementById('container');
+    const playerInput   = document.getElementById('playerInput');
+    const inputBar      = document.getElementById('inputBar');
+
+    const currentSpeedElement   = document.getElementById('currentSpeed');
+    const speedHintElement      = document.getElementById('speedHint');
+
+    // Start the game
+    updateAnimationSpeedDisplay();
     startGame();
 
-    //FUNCTIONS
+    // FUNCTIONS
 
     function startGame() {
-        const stateContent      = storyStates[currentState];
-        const text              = stateContent[0];
-        const storyContainer    = document.getElementById('storyContainer');
-        const textElement       = document.createElement('div');
+        const stateContent  = storyStates[currentState];
+        const text          = stateContent[0];
+        const textElement   = document.createElement('div');
         textElement.classList.add('story-text');
-        textElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2');
-        storyContainer.appendChild(textElement);
+        textElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2'); // chatGPT proposition
+        container.appendChild(textElement);
 
-        playerInput.placeholder = storyStates[currentState][2];
-    
+        // Set the initial placeholder
+        playerInput.placeholder = stateContent[2];
+
         animateTextIntoElement(text, textElement, () => {
             showInputBar();
             displayChoices();
         });
     }
 
-    function animateTextIntoElement(text, element, callback) { // Heavily chatGPT assisted
-        let index               = 0;
-        animationInProgress     = true;
-        let currentAnimSpeed    = DEFAULT_ANIM_SPEED;
-        let isSpacePressed      = false;
-    
-        // Determine if we can skip the animation
-        const stateContent      = storyStates[currentState];
-        const choices           = stateContent[1];
-        const placeholder       = stateContent[2];
-        const canSkipAnimation  = !(choices.length === 0 && placeholder === e);
-    
+    function animateTextIntoElement(text, element, callback) { // moderately chatGPT assisted
+        let index           = 0;
+        animationInProgress = true;
+        let currentAnimSpeed;
+        let isSpacePressed  = false;
+
+        // Determine the animation speed based on the setting
+        const speedSetting  = animationSpeeds[currentSpeedIndex];
+
+        if (speedSetting === 'Normal') {
+            currentAnimSpeed = DEFAULT_ANIM_SPEED;
+        } else if (speedSetting === 'Fast') {
+            currentAnimSpeed = FASTER_ANIM_SPEED;
+        } else if (speedSetting === 'None') { // chatGPT proposition
+            // Skip the animation
+            element.innerHTML  += text;
+            animationInProgress = false;
+            if (callback) callback();
+            return;
+        }
+
         function typeNextChar() {
             if (index < text.length && animationInProgress) {
                 element.innerHTML += text.charAt(index);
@@ -145,96 +177,111 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             } else {
                 // Animation finished
                 animationInProgress = false;
-                removeEventListeners();
+                removeEventListeners(); // chatGPT fix
                 if (callback) callback();
             }
         }
-    
+
         // Event listeners to control animation speed
         function onKeyDown(event) {
-            if (event.key === ' ') {
-                if (!isSpacePressed) {
-                    isSpacePressed      = true;
-                    currentAnimSpeed    = FASTER_ANIM_SPEED;
+            if (speedSetting === 'Normal') {
+                if (event.key === ' ') {
+                    if (!isSpacePressed) {
+                        isSpacePressed      = true;
+                        currentAnimSpeed    = FASTER_ANIM_SPEED;
+                    }
+                    event.preventDefault(); // Prevent scrolling when pressing space
                 }
-                event.preventDefault(); // Prevent scrolling when pressing space
-            } else if (event.key === 'Enter') {
-                if (canSkipAnimation && animationInProgress) {
-                    // Skip the animation
-                    animationInProgress  = false;
-                    element.innerHTML   += text.slice(index);
+            }
+
+            // Skip the animation
+            if (event.key === 'Enter') {
+                if (animationInProgress) {
+                    animationInProgress = false;
+                    element.innerHTML  += text.slice(index);
                     removeEventListeners();
                     if (callback) callback();
                 }
             }
         }
-    
+
         function onKeyUp(event) {
-            if (event.key === ' ') {
-                isSpacePressed      = false;
-                currentAnimSpeed    = DEFAULT_ANIM_SPEED;
+            if (speedSetting === 'Normal') {
+                if (event.key === ' ') {
+                    isSpacePressed = false;
+                    currentAnimSpeed = DEFAULT_ANIM_SPEED;
+                }
             }
         }
-    
-        function removeEventListeners() { // To prevent bugs that I was facing
+
+        function removeEventListeners() {
             document.removeEventListener('keydown', onKeyDown);
             document.removeEventListener('keyup', onKeyUp);
         }
-    
-        // Add event listeners
-        document.addEventListener('keydown', onKeyDown);
-        document.addEventListener('keyup', onKeyUp);
-    
+
+        if (speedSetting !== 'None') {
+            document.addEventListener('keydown', onKeyDown);
+            document.addEventListener('keyup', onKeyUp);
+        }
+
         // Start typing
         typeNextChar();
-    }    
+    }
 
     function showInputBar() {
         inputBar.classList.add('show');
         playerInput.disabled = false; // Enable input field
         playerInput.focus(); // Add focus to the input field
-    }    
+    }
     function hideInputBar() {
         inputBar.classList.remove('show');
         playerInput.disabled = true; // Disable input field
         playerInput.blur(); // Remove focus from the input field
-    }    
+    }
 
-    function displayChoices() {
+    function displayChoices() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
         const choicesWrapper        = document.getElementById('choicesWrapper');
         choicesWrapper.innerHTML    = ''; // Clear previous choices
         const stateContent          = storyStates[currentState];
         const choices               = stateContent[1];
     
         if (choices.length === 0) {
-            choicesWrapper.classList.add('hidden'); // Hide the choices wrappern if it's a deadend
+            choicesWrapper.classList.add('hidden'); // Hide the choices wrapper if it's a dead end
         } else {
             choicesWrapper.classList.remove('hidden');
-            choices.forEach(choice => {
-                const censoredWord          = '-'.repeat(choice[0].length);
-                const choiceElement         = document.createElement('div');
+            // Dynamically set grid columns
+            choicesWrapper.style.gridTemplateColumns = `repeat(${choices.length}, 1fr)`;
+    
+            choices.forEach((choice) => {
+                const choiceWord    = choice[0];
+                const nextState     = choice[1];
+                const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
+                const isUnlocked    = unlockedChoices[choiceKey];     // Check if this choice is unlocked
+                const censoredWord  = isUnlocked ? choiceWord : '-'.repeat(choiceWord.length);
+                const choiceElement = document.createElement('div');
                 choiceElement.classList.add('choices-container');
-                choiceElement.textContent   = censoredWord;
+                choiceElement.textContent = censoredWord;
+    
+                // Set the cursor based on whether the choice is unlocked
+                choiceElement.style.cursor = isUnlocked ? 'pointer' : 'not-allowed';
+    
                 choicesWrapper.appendChild(choiceElement);
             });
             addChoiceClickEvents();
         }
         adjustContainerHeight();
-    }
+    }    
 
     function adjustContainerHeight() {
         const inputBar  = document.querySelector('.input-bar');
         const container = document.querySelector('.container');
 
-        // Get the dynamic height of the input bar
-        const inputBarHeight = inputBar.offsetHeight;
-
-        // Set the container height to fill the remaining space
-        container.style.height = `calc(100vh - ${inputBarHeight}px - 10px)`;
+        const inputBarHeight    = inputBar.offsetHeight;
+        container.style.height  = `calc(100vh - ${inputBarHeight}px - 25px)`;
     }
 
-    function updateChoices() { // Based on the letters input by the player
-        const inputValue    = playerInput.value.toLowerCase().trim();
+    function updateChoices() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
+        const inputValue    = playerInput. value.toLowerCase().trim();
         const stateContent  = storyStates[currentState];
         const choices       = stateContent[1];
     
@@ -244,46 +291,68 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
     
         const choiceElements = document.querySelectorAll('.choices-container');
     
-        choices.forEach((choice, i) => { //Heavily chatGPT assisted
-            const choiceWord    = choice[0].toLowerCase();
+        choices.forEach((choice, i) => {
+            const choiceWord    = choice[0];
+            const nextState     = choice[1];
+            const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
             let displayWord     = '';
-            for (let i = 0; i < choiceWord.length; i++) {
-                if (inputValue[i] && inputValue[i] === choiceWord[i]) {
-                    displayWord += choiceWord[i];
-                } else {
-                    displayWord += '-';
+    
+            if (unlockedChoices[choiceKey]) {
+                displayWord = choiceWord; // Uncensored if unlocked
+            } else {
+                // Censor letters that don't match the player's input
+                for (let j = 0; j < choiceWord.length; j++) {
+                    if (inputValue[j] && inputValue[j] === choiceWord[j]) {
+                        displayWord += choiceWord[j];
+                    } else {
+                        displayWord += '-';
+                    }
                 }
             }
-            // Update the choice element
+    
+            // Update the choice element's display
             choiceElements[i].textContent = displayWord;
-
-            // Update the cursor style based on whether the input matches the choice
-            if (inputValue === choiceWord) {
-                choiceElements[i].style.cursor = 'pointer'; // Fully matching input, allow clicking
+    
+            // Set the cursor: 'pointer' if unlocked or fully matching, otherwise 'not-allowed'
+            if (unlockedChoices[choiceKey] || inputValue === choiceWord) {
+                choiceElements[i].style.cursor = 'pointer';
             } else {
-                choiceElements[i].style.cursor = 'not-allowed'; // Not fully matching, prevent clicking
+                choiceElements[i].style.cursor = 'not-allowed';
             }
         });
-    }
-    
-    function addChoiceClickEvents() { // Moderately chatGPT assisted
-        const choiceElements = document.querySelectorAll('.choices-container');
+    }    
+
+    function addChoiceClickEvents() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
+        const choiceElements    = document.querySelectorAll('.choices-container');
         choiceElements.forEach((choiceElement, i) => {
-            choiceElement.addEventListener('click', (b) => {
-                const selectedChoice    = storyStates[currentState][1][i][0];
-                const inputValue        = playerInput.value.toLowerCase().trim();
+            const choiceWord    = storyStates[currentState][1][i][0];
+            const nextState     = storyStates[currentState][1][i][1];
+            const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
+
+            choiceElement.addEventListener('click', () => {
+                const inputValue = playerInput.value.toLowerCase().trim();
     
-                // Allow clicking only if the input value matches the choice
-                if (inputValue === selectedChoice.toLowerCase()) {
-                    checkPlayerChoice(); // Proceed to the next state
+                if (unlockedChoices[choiceKey] || inputValue === choiceWord.toLowerCase()) {
+                    // Unlock the choice with the combination of currentState and nextState
+                    unlockChoice(currentState, nextState);
+                    proceedToNextState(nextState);
                 }
             });
         });
     }    
 
-    function checkPlayerChoice() {
+    function unlockChoice(currentState, nextState) { // Heavily chatGPT assisted
+        const choiceKey = `${currentState}-${nextState}`;
+        
+        if (!unlockedChoices[choiceKey]) {
+            unlockedChoices[choiceKey] = true;
+            localStorage.setItem('unlockedChoices', JSON.stringify(unlockedChoices));
+        }
+    }    
+
+    function checkPlayerChoice() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
         if (animationInProgress) {
-            return; // Do nothing if animation is in progress
+            return; // Do nothing
         }
     
         const inputValue    = playerInput.value.toLowerCase().trim();
@@ -296,47 +365,80 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         }
     
         for (let i = 0; i < choices.length; i++) {
-            if (inputValue === choices[i][0].toLowerCase()) {
-                proceedToNextState(choices[i][1]);
+            const choiceWord    = choices[i][0].toLowerCase();
+            const nextState     = choices[i][1];
+            const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
+    
+            if (inputValue === choiceWord) {
+                // Unlock the choice with the combination of currentState and nextState
+                unlockChoice(currentState, nextState);
+                proceedToNextState(nextState);
                 return;
             }
         }
-    }       
+    }    
 
-    function proceedToNextState(nextStateName) { // Moderately chatGPT assisted
+    function proceedToNextState(nextStateName) {
         hideInputBar();
-        
-        // Reset text color alternation only when restarting the game (when transitioning to 'intro')
+
+        // Reset text color alternation only when restarting the game
         if (nextStateName === 'intro') {
             alternate = false;
-            storyContainer.innerHTML = ''; // Clear the story container when restarting
+            container.innerHTML = '';   // Clear the story container
         } else {
-            alternate = !alternate; // Toggle text color alternation for every other state
+            alternate = !alternate;     // Toggle text color alternation for every other state
         }
 
-        playerInput.value       = '';    // Clear input
+        playerInput.value       = ''; // Clear input
         const nextStateContent  = storyStates[nextStateName];
         playerInput.placeholder = nextStateContent[2]; // Update placeholder
-    
+
         // Wait for the input bar to hide before continuing
         setTimeout(() => {
             // Create a new text element for the next part of the story
-            const newTextElement = document.createElement('div');
+            const newTextElement    = document.createElement('div');
             newTextElement.classList.add('story-text');
             newTextElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2');
-            storyContainer.appendChild(newTextElement);
-    
+            container.appendChild(newTextElement);
+
             // Update the current state
             currentState = nextStateName;
-    
+
             // Animate the next part of the story
             animateTextIntoElement(nextStateContent[0], newTextElement, () => {
                 showInputBar();
                 displayChoices();
             });
         }, 500); // Adjust this delay to match your input bar animation duration
-    }     
+    }
 
+    function updateAnimationSpeedDisplay() { // Moderately chatGPT assisted
+        const speed = animationSpeeds[currentSpeedIndex];
+        currentSpeedElement.textContent = speed;
+
+        if (speed === 'Normal') {
+            speedHintElement.textContent = 'Hold SPACE to speed up an animation\nPress ENTER to skip an animation';
+        } else if (speed === 'Fast') {
+            speedHintElement.textContent = 'Press ENTER to skip an animation';
+        } else if (speed === 'None') {
+            speedHintElement.textContent = '';
+        }
+    }
+
+    // Event listeners for animation speed control --> Heavily chatGPT assisted
+    document.getElementById('prevSpeed').addEventListener('click', () => {
+        currentSpeedIndex = (currentSpeedIndex - 1 + animationSpeeds.length) % animationSpeeds.length;
+        updateAnimationSpeedDisplay();
+        localStorage.setItem('animationSpeed', animationSpeeds[currentSpeedIndex]);
+    });
+
+    document.getElementById('nextSpeed').addEventListener('click', () => {
+        currentSpeedIndex = (currentSpeedIndex + 1) % animationSpeeds.length;
+        updateAnimationSpeedDisplay();
+        localStorage.setItem('animationSpeed', animationSpeeds[currentSpeedIndex]);
+    });
+
+    // Event listeners
     playerInput.addEventListener('input', updateChoices);
 
     playerInput.addEventListener('keydown', (e) => {
@@ -344,5 +446,4 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             checkPlayerChoice();
         }
     });    
-
-});
+});    
