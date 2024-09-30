@@ -6,6 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let animationInProgress     = false;
     let alternate               = false;    // For the text colour
 
+    const glitchSounds          = ['sounds/glitch1.mp3', 'sounds/glitch2.mp3'];
+    const typingSound           = new Audio('sounds/type.mp3');
+    const bgMusic               = new Audio('sounds/music.mp3');
+
+    const MUSIC_DEFAULT_VOL     = 1;
+    const SFX_DEFAULT_VOL       = 0.1;
+    let musicEnabled            = true;
+    let soundEnabled            = true;
+
+    bgMusic.loop                = true;
+
     // Placeholder texts
     const d = "What do you do?";
     const e = "Press Enter to rewind!";
@@ -143,6 +154,38 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         }
     }
 
+    // Music control
+    if (localStorage.getItem('musicEnabled')) {
+        musicEnabled = JSON.parse(localStorage.getItem('musicEnabled'));
+    } else {
+        musicEnabled = true;
+    }
+    if (musicEnabled) {
+        bgMusic.volume = MUSIC_DEFAULT_VOL;
+        document.getElementById('musicToggle').textContent = 'On';
+    } else {
+        bgMusic.volume = 0;
+        document.getElementById('musicToggle').textContent = 'Off';
+    }
+    bgMusic.play();
+
+    // Sound control
+    if (localStorage.getItem('soundEnabled')) {
+        soundEnabled = JSON.parse(localStorage.getItem('soundEnabled'));
+    } else {
+        soundEnabled = true;
+    }
+    if (soundEnabled) {
+        typingSound.volume = SFX_DEFAULT_VOL;
+        document.getElementById('soundToggle').textContent = 'On';
+    } else {
+        typingSound.volume = 0;
+        document.getElementById('soundToggle').textContent = 'Off';
+    }
+    // Event listeners for music and sound toggles
+    document.getElementById('musicToggle').addEventListener('click', toggleMusic);
+    document.getElementById('soundToggle').addEventListener('click', toggleSound);
+
     // Glitchy transition control
     let glitchEnabled = true; // Default to flashing images (glitch) enabled
     if (localStorage.getItem('glitchEnabled')) {
@@ -201,7 +244,8 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         continueButton.disabled     = true;
         newGameButton.disabled      = true;
         titleScreen.classList.add('glitchy-transition');
-        titleScreen.classList.add('glitch-active')
+        titleScreen.classList.add('glitch-active');
+        playGlitchSound();
         setTimeout(() => {
             titleScreen.classList.remove('glitchy-transition');
             titleScreen.classList.remove('glitch-active');
@@ -215,7 +259,7 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
     
     function startGame(isContinuing) {
         if (isContinuing && localStorage.getItem('currentState')) {
-            currentState = localStorage.getItem('currentState');
+            currentState = 'intro';
         } else {
             currentState = 'intro';
             localStorage.setItem('currentState', currentState);
@@ -243,6 +287,27 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         let currentAnimSpeed;
         let isSpacePressed  = false;
 
+        // Start the sound and loop it until the typing animation finishes
+        function startTypingSound() {
+            if (!soundEnabled) return;
+        
+            typingSound.volume = SFX_DEFAULT_VOL;
+            typingSound.currentTime = 0;
+            typingSound.loop = false; // We will manually restart if needed
+            typingSound.play();
+        
+            typingSound.onended = function() {
+                if (animationInProgress) {
+                    startTypingSound(); // Restart the sound if the animation is still ongoing
+                }
+            };
+        }
+        
+        function stopTypingSound() {
+            typingSound.pause();
+            typingSound.currentTime = 0; // Reset the sound for next use
+        }        
+
         // Determine the animation speed based on the setting
         const speedSetting  = animationSpeeds[currentSpeedIndex];
 
@@ -260,6 +325,8 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             return;
         }
 
+        startTypingSound();
+
         function typeNextChar() {
             if (index < text.length && animationInProgress) {
                 element.innerHTML += text.charAt(index);
@@ -270,6 +337,7 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             } else {
                 // Animation finished
                 animationInProgress = false;
+                stopTypingSound();
                 removeEventListeners();
                 // Ensure the container is scrolled to the bottom
                 container.scrollTop = container.scrollHeight;
@@ -493,6 +561,7 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
     
             if (glitchEnabled) {
                 document.body.classList.add('glitchy-transition');
+                playGlitchSound();
     
                 setTimeout(() => {
                     togglePalette();
@@ -606,6 +675,45 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         }, randomDelay);
     }
     startRandomGlitches();
+
+    function toggleMusic() {
+        musicEnabled = !musicEnabled;
+        if (musicEnabled) {
+            bgMusic.volume = MUSIC_DEFAULT_VOL;
+            document.getElementById('musicToggle').textContent = 'On';
+        } else {
+            bgMusic.volume = 0;
+            document.getElementById('musicToggle').textContent = 'Off';
+        }
+        localStorage.setItem('musicEnabled', JSON.stringify(musicEnabled));
+    }
+    
+    function toggleSound() {
+        soundEnabled = !soundEnabled;
+        if (soundEnabled) {
+            typingSound.volume = SFX_DEFAULT_VOL;
+            document.getElementById('soundToggle').textContent = 'On';
+        } else {
+            typingSound.volume = 0;
+            document.getElementById('soundToggle').textContent = 'Off';
+            typingSound.pause();
+        }
+        localStorage.setItem('soundEnabled', JSON.stringify(soundEnabled));
+    }    
+
+    function playGlitchSound() {
+        if (!soundEnabled) return;
+    
+        const audio = new Audio();
+        const randomSound = glitchSounds[Math.floor(Math.random() * glitchSounds.length)];
+        audio.src = randomSound;
+        audio.volume = SFX_DEFAULT_VOL;
+        
+        // Set a random playback rate for pitch variation
+        audio.playbackRate = Math.random() * 0.2 + 1;
+        
+        audio.play();
+    }    
 
     playerInput.addEventListener('input', updateChoices);
 
