@@ -133,6 +133,16 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
     }
     document.getElementById('flashingToggle').textContent = glitchEnabled ? "On" : "Off";
 
+    // Better readability control
+    let betterReadabilityEnabled = false; // Default to Off
+    if (localStorage.getItem('betterReadabilityEnabled')) {
+        betterReadabilityEnabled = JSON.parse(localStorage.getItem('betterReadabilityEnabled'));
+        if (betterReadabilityEnabled) {
+            document.body.classList.add('better-readability');
+            document.getElementById('betterReadabilityToggle').textContent = "On";
+        }
+    }
+
     // Load unlocked choices from localStorage
     let unlockedChoices = {};
     if (localStorage.getItem('unlockedChoices')) {
@@ -509,6 +519,22 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
     }
     // Event listener to the "Flashing Images" button
     document.getElementById('flashingToggle').addEventListener('click', toggleFlashingImages);
+
+    // Function to toggle better readability mode
+    function toggleBetterReadability() {
+        betterReadabilityEnabled = !betterReadabilityEnabled;
+        if (betterReadabilityEnabled) {
+            document.body.classList.add('better-readability');
+            document.getElementById('betterReadabilityToggle').textContent = "On";
+        } else {
+            document.body.classList.remove('better-readability');
+            document.getElementById('betterReadabilityToggle').textContent = "Off";
+        }
+        localStorage.setItem('betterReadabilityEnabled', JSON.stringify(betterReadabilityEnabled));
+    }
+    // Event listener for the "Better Readability" button
+    document.getElementById('betterReadabilityToggle').addEventListener('click', toggleBetterReadability);
+    
 
 
     playerInput.addEventListener('input', updateChoices);
