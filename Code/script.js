@@ -45,7 +45,8 @@ one more time...`,
             [
                 ['classroom', 'look_at_classroom'],
                 ['corridor', 'look_at_corridor'],
-                ['girl', 'look_at_girl']
+                ['girl', 'look_at_girl'],
+                ['floor', 'look_at_floor'],
             ],
             l
         ],
@@ -98,6 +99,22 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         ],
     };
 
+    // Get references to elements
+    // Title Screen
+    const titleScreen       = document.getElementById('titleScreen');
+    const logo              = document.getElementById('titleLogo');
+    const continueButton    = document.getElementById('continueButton');
+    const newGameButton     = document.getElementById('newGameButton');
+
+    //Game Elements
+    const mainContent   = document.getElementById('mainContent');
+    const container     = document.getElementById('container');
+    const playerInput   = document.getElementById('playerInput');
+    const inputBar      = document.getElementById('inputBar');
+
+    const currentSpeedElement   = document.getElementById('currentSpeed');
+    const speedHintElement      = document.getElementById('speedHint');
+
     // Colour palette control
     let isPinkPalette       = true; // Start with the rose palette
     if (localStorage.getItem('isPinkPalette')) {
@@ -143,42 +160,82 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         }
     }
 
-    // Load unlocked choices from localStorage
+    // Check if there are unlocked choices
     let unlockedChoices = {};
     if (localStorage.getItem('unlockedChoices')) {
         unlockedChoices = JSON.parse(localStorage.getItem('unlockedChoices'));
+        continueButton.disabled = false;
+    } else {
+        continueButton.disabled = true;
+        continueButton.style.cursor = 'not-allowed';
     }
+    // Title Screen
+    continueButton.addEventListener('click', () => {
+        if (!continueButton.disabled) {
+            hideTitleScreen(true);
+        }
+    });
 
-    // Get references to elements
-    const container     = document.getElementById('container');
-    const playerInput   = document.getElementById('playerInput');
-    const inputBar      = document.getElementById('inputBar');
+    newGameButton.addEventListener('click', () => {
+        // Clear the saved game data
+        localStorage.removeItem('unlockedChoices');
+        unlockedChoices = {};
+        isPinkPalette = true;
+        localStorage.setItem('isPinkPalette', JSON.stringify(isPinkPalette));
 
-    const currentSpeedElement   = document.getElementById('currentSpeed');
-    const speedHintElement      = document.getElementById('speedHint');
+        // Remove the palette classes and add pink-palette
+        document.body.classList.remove('blue-palette', 'pink-palette');
+        document.body.classList.add('pink-palette');
 
-    // Start the game
+        currentState = 'intro';
+        localStorage.setItem('currentState', currentState);
+
+        hideTitleScreen(false); // Pass false to indicate new game
+    });
+
     updateAnimationSpeedDisplay();
-    startGame();
 
     // FUNCTIONS
 
-    function startGame() {
+    function hideTitleScreen(isContinuing) {
+        continueButton.disabled     = true;
+        newGameButton.disabled      = true;
+        titleScreen.classList.add('glitchy-transition');
+        titleScreen.classList.add('glitch-active')
+        setTimeout(() => {
+            titleScreen.classList.remove('glitchy-transition');
+            titleScreen.classList.remove('glitch-active');
+            
+            titleScreen.style.display = 'none';
+            mainContent.style.display = 'flex';
+    
+            startGame(isContinuing);
+        }, 1000);
+    }
+    
+    function startGame(isContinuing) {
+        if (isContinuing && localStorage.getItem('currentState')) {
+            currentState = localStorage.getItem('currentState');
+        } else {
+            currentState = 'intro';
+            localStorage.setItem('currentState', currentState);
+        }
+    
         const stateContent  = storyStates[currentState];
         const text          = stateContent[0];
         const textElement   = document.createElement('div');
         textElement.classList.add('story-text');
-        textElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2'); // chatGPT proposition
+        textElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2');
         container.appendChild(textElement);
-
+    
         // Set the initial placeholder
         playerInput.placeholder = stateContent[2];
-
+    
         animateTextIntoElement(text, textElement, () => {
             showInputBar();
             displayChoices();
         });
-    }
+    }    
 
     function animateTextIntoElement(text, element, callback) { // moderately chatGPT assisted
         let index           = 0;
@@ -459,6 +516,7 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             container.appendChild(newTextElement);
     
             currentState = nextStateName;
+            localStorage.setItem('currentState', currentState);
     
             animateTextIntoElement(nextStateContent[0], newTextElement, () => {
                 showInputBar();
@@ -535,7 +593,19 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
     // Event listener for the "Better Readability" button
     document.getElementById('betterReadabilityToggle').addEventListener('click', toggleBetterReadability);
     
-
+    // chatGPT assisted code to glitch the code
+    function startRandomGlitches() {
+        const randomDelay = Math.random() * 5000 + 2000; // Random delay between 2 to 7 seconds
+        setTimeout(() => {
+            logo.classList.add('glitch-active');
+        
+            setTimeout(() => {
+                logo.classList.remove('glitch-active');
+            }, 300); // Match the duration of the glitch animation
+            startRandomGlitches(); // Schedule the next glitch
+        }, randomDelay);
+    }
+    startRandomGlitches();
 
     playerInput.addEventListener('input', updateChoices);
 

@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="mainContent" class="main-content">
+    <!-- Title Screen -->
+    <div id="titleScreen" class="title-screen">
+        <img src="images/bg.png" alt="Background" class="title-bg">
+        <img src="images/logo.png" id="titleLogo" alt="Game Logo" class="title-logo">
+        <div class="title-buttons">
+            <button id="continueButton" class="title-button">Continue</button>
+            <button id="newGameButton" class="title-button">New Game</button>
+        </div>
+    </div>
+
+    <!-- Main Game Content -->
+    <div id="mainContent" class="main-content" style="display: none;">
         <div id="controlPanel" class="control-panel">
             <div id="animationControl" class="animation-control">
                 <div class="control-label">Animation Speed</div>
@@ -34,6 +45,7 @@
         <div id="container" class="container"></div>
     </div>    
 
+    <!-- Input Bar -->
     <div id="inputBar" class="input-bar">
         <div id="inputBarContainer" class="input-bar-container">
             <div id="choicesWrapper" class="choices-wrapper"></div>
@@ -41,6 +53,7 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
