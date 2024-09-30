@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentState            = 'intro';  // Starting state is 'intro'
     let animationInProgress     = false;
     let alternate               = false;    // For the text colour
-    let isPinkPalette           = true;     // Start with the rose palette
 
     // Placeholder texts
     const d = "What do you do?";
@@ -99,11 +98,8 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         ],
     };
 
-    // Animation speed control
-    const animationSpeeds = ['Normal', 'Fast', 'None'];
-    let currentSpeedIndex = 0; // Default to 'Normal'
-
-    // Load palette from localStorage
+    // Colour palette control
+    let isPinkPalette       = true; // Start with the rose palette
     if (localStorage.getItem('isPinkPalette')) {
         isPinkPalette = JSON.parse(localStorage.getItem('isPinkPalette'));
         if (!isPinkPalette) {
@@ -119,7 +115,9 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         document.body.classList.add('blue-palette');
     }
 
-    // Load saved animation speed from localStorage
+    // Animation speed control
+    const animationSpeeds = ['Normal', 'Fast', 'None'];
+    let currentSpeedIndex = 0; // Default to 'Normal'
     if (localStorage.getItem('animationSpeed')) {
         const savedSpeed    = localStorage.getItem('animationSpeed');
         currentSpeedIndex   = animationSpeeds.indexOf(savedSpeed);
@@ -127,6 +125,13 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             currentSpeedIndex = 0; // Default to 'Normal' if not found
         }
     }
+
+    // Glitchy transition control
+    let glitchEnabled = true; // Default to flashing images (glitch) enabled
+    if (localStorage.getItem('glitchEnabled')) {
+        glitchEnabled = JSON.parse(localStorage.getItem('glitchEnabled'));
+    }
+    document.getElementById('flashingToggle').textContent = glitchEnabled ? "On" : "Off";
 
     // Load unlocked choices from localStorage
     let unlockedChoices = {};
@@ -419,29 +424,15 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
                 document.documentElement.style.setProperty('--final-text-color', '#e0c3c3');
             }
     
-            // Add the glitchy transition class
-            document.body.classList.add('glitchy-transition');
+            if (glitchEnabled) {
+                document.body.classList.add('glitchy-transition');
     
-            // After the glitch animation, toggle the color palette and remove the glitch class
-            setTimeout(() => {
-                // Toggle the palette
-                isPinkPalette = !isPinkPalette;
-    
-                if (isPinkPalette) {
-                    document.body.classList.remove('blue-palette');
-                    document.body.classList.add('pink-palette');
-                } else {
-                    document.body.classList.remove('pink-palette');
-                    document.body.classList.add('blue-palette');
-                }
-    
-                // Remove the glitchy transition class after the effect
-                document.body.classList.remove('glitchy-transition');
-    
-                // Save the palette choice
-                localStorage.setItem('isPinkPalette', JSON.stringify(isPinkPalette));
-    
-            }, 800); // Duration of the glitch animation (800ms)
+                setTimeout(() => {
+                    togglePalette();
+                }, 1000);
+            } else {
+                togglePalette();
+            }
     
         } else {
             alternate = !alternate;
@@ -463,8 +454,28 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
                 showInputBar();
                 displayChoices();
             });
-        }, 500); // Adjust this delay to match your input bar animation duration
-    }    
+        }, 500);
+    }
+    
+    // Function to toggle the palette without the glitch effect
+    function togglePalette() {
+        // Toggle the palette
+        isPinkPalette = !isPinkPalette;
+    
+        if (isPinkPalette) {
+            document.body.classList.remove('blue-palette');
+            document.body.classList.add('pink-palette');
+        } else {
+            document.body.classList.remove('pink-palette');
+            document.body.classList.add('blue-palette');
+        }
+    
+        // Remove the glitchy transition class after the effect
+        document.body.classList.remove('glitchy-transition');
+    
+        // Save the palette choice
+        localStorage.setItem('isPinkPalette', JSON.stringify(isPinkPalette));
+    } 
 
     function updateAnimationSpeedDisplay() { // Moderately chatGPT assisted
         const speed = animationSpeeds[currentSpeedIndex];
@@ -478,7 +489,6 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             speedHintElement.textContent = '';
         }
     }
-
     // Event listeners for animation speed control --> Heavily chatGPT assisted
     document.getElementById('prevSpeed').addEventListener('click', () => {
         currentSpeedIndex = (currentSpeedIndex - 1 + animationSpeeds.length) % animationSpeeds.length;
@@ -492,7 +502,15 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
         localStorage.setItem('animationSpeed', animationSpeeds[currentSpeedIndex]);
     });
 
-    // Event listeners
+    function toggleFlashingImages() { // Moderately chatGPT assisted
+        glitchEnabled = !glitchEnabled;
+        document.getElementById('flashingToggle').textContent = glitchEnabled ? "On" : "Off";
+        localStorage.setItem('glitchEnabled', JSON.stringify(glitchEnabled));
+    }
+    // Event listener to the "Flashing Images" button
+    document.getElementById('flashingToggle').addEventListener('click', toggleFlashingImages);
+
+
     playerInput.addEventListener('input', updateChoices);
 
     playerInput.addEventListener('keydown', (e) => {
