@@ -78,7 +78,6 @@ The crowd swirls past, but all I can see is her.`,
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
                     ['walk', 'walk_on_intro'],
-                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
@@ -93,7 +92,6 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
                     ['walk', 'walk_on_intro'],
-                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
@@ -107,7 +105,6 @@ Maybe if I stare hard enough, I’ll find it again.`,
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
                     ['walk', 'walk_on_intro'],
-                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
