@@ -383,16 +383,17 @@ document.addEventListener("DOMContentLoaded", () => {
         choices.forEach((choice, i) => {
             const choiceWord    = choice[0];
             const nextState     = choice[1];
-            const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
+            const choiceKey     = `${currentState}-${nextState}`;
             let displayWord     = '';
     
             if (unlockedChoices[choiceKey]) {
-                displayWord = choiceWord; // Uncensored if unlocked
+                displayWord = choiceWord;
             } else {
-                // Censor letters that don't match the player's input
+                // Uncensor letters present in inputValue, regardless of position
                 for (let j = 0; j < choiceWord.length; j++) {
-                    if (inputValue[j] && inputValue[j] === choiceWord[j]) {
-                        displayWord += choiceWord[j];
+                    const letter = choiceWord[j];
+                    if (inputValue.includes(letter.toLowerCase())) {
+                        displayWord += letter;
                     } else {
                         displayWord += '-';
                     }
@@ -402,8 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Update the choice element's display
             choiceElements[i].textContent = displayWord;
     
-            // Set the cursor: 'pointer' if unlocked or fully matching, otherwise 'not-allowed'
-            if (unlockedChoices[choiceKey] || inputValue === choiceWord) {
+            // Set the cursor
+            if (unlockedChoices[choiceKey] || inputValue === choiceWord.toLowerCase()) {
                 choiceElements[i].style.cursor = 'pointer';
             } else {
                 choiceElements[i].style.cursor = 'not-allowed';
