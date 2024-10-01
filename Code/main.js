@@ -480,6 +480,8 @@ document.addEventListener("DOMContentLoaded", () => {
         hideInputBar();
     
         const unlockedChoicesCount = Object.keys(unlockedChoices).length;
+
+        container.appendChild(document.createElement('br'));
     
         // Check if the player should enter the reflection state
         if (nextStateName === 'intro' && unlockedChoicesCount % 5 === 0 && unlockedChoicesCount !== 0 && currentState !== 'reflection') {
