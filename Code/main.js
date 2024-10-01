@@ -480,15 +480,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function proceedToNextState(nextStateName) { // moderately assisted by chatGPT for the color changing and reflections case
         hideInputBar();
     
-        const unlockedChoicesCount = Object.keys(unlockedChoices).length;
-
         container.appendChild(document.createElement('br'));
     
         // Check if the player should enter the reflection state
-        if (nextStateName === 'intro' && unlockedChoicesCount % 5 === 0 && unlockedChoicesCount !== 0 && currentState !== 'reflection') {
-            reflectionIndex++;
-            localStorage.setItem('reflectionIndex', reflectionIndex);
-            nextStateName = 'reflection';  // Transition to the reflection state
+        if (nextStateName === 'intro' && currentState !== 'reflection') {
+            if (Math.random() < 1 / 3) {
+                reflectionIndex++; // Increment reflectionIndex to get the next reflection
+                localStorage.setItem('reflectionIndex', reflectionIndex);
+                nextStateName = 'reflection';  // Transition to the reflection state
+            }
         }
     
         if (nextStateName === 'intro' || nextStateName === 'reflection') {
@@ -526,8 +526,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 newTextElement.classList.add('story-text');
                 newTextElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2');
                 container.appendChild(newTextElement);
-                
-                newTextElement.innerHTML = reflectionState[0]; // No typing, just display the reflection
+    
+                newTextElement.innerHTML = reflectionState[0]; // Display the reflection text
                 currentState = 'reflection';  // Set current state to 'reflection'
                 localStorage.setItem('currentState', currentState);
                 showInputBar();  // Show the input bar for pressing Enter
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 displayChoices();
             });
         }, 500);
-    }        
+    }
     
     // Function to toggle the palette without the glitch effect
     function togglePalette() {
