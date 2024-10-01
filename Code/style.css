@@ -228,7 +228,40 @@ body {
         .music-control .control-button:hover,
         .sound-control .control-button:hover {
             background-color: var(--contrast-color);
-        }        
+        }
+    .auto-scroll-control {
+        background-color: var(--accent-background-color);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        color: var(--text-color-1);
+        padding: 10px;
+        border: 2px solid var(--text-color-1);
+        border-radius: 8px;
+        font-family: 'Playfair Display', serif;
+        box-sizing: border-box;
+        margin-top: 15px;
+    }
+        .auto-scroll-control .control-label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .auto-scroll-control .control-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .auto-scroll-control .control-button {
+            background-color: var(--background-color);
+            color: var(--text-color-1);
+            font-family: 'Playfair Display', serif;
+            border: none;
+            font-size: 1.2em;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .auto-scroll-control .control-button:hover {
+            background-color: var(--contrast-color);
+        }     
     .flashing-images-control {
         background-color: var(--accent-background-color);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);

@@ -108,6 +108,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('musicToggle').addEventListener('click', toggleMusic);
     document.getElementById('soundToggle').addEventListener('click', toggleSound);
 
+    // Auto-scroll control
+    let autoScrollEnabled = true;
+    if (localStorage.getItem('autoScrollEnabled')) {
+        autoScrollEnabled = JSON.parse(localStorage.getItem('autoScrollEnabled'));
+    } else {
+        autoScrollEnabled = true;
+    }
+    document.getElementById('autoScrollToggle').textContent = autoScrollEnabled ? 'On' : 'Off';
+    // Event listener for the Auto-Scroll toggle button
+    document.getElementById('autoScrollToggle').addEventListener('click', toggleAutoScroll);
+    function toggleAutoScroll() {
+        autoScrollEnabled = !autoScrollEnabled;
+        document.getElementById('autoScrollToggle').textContent = autoScrollEnabled ? 'On' : 'Off';
+        localStorage.setItem('autoScrollEnabled', JSON.stringify(autoScrollEnabled));
+    }
+
     // Glitchy transition control
     let glitchEnabled = true; // Default to flashing images (glitch) enabled
     if (localStorage.getItem('glitchEnabled')) {
@@ -266,8 +282,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index < text.length && animationInProgress) {
                 element.innerHTML += text.charAt(index);
                 index++;
-                // Automatic scrolling unless user has scrolled manually
-                if (!isUserScrolling) {
+                // Scroll to bottom after adding a character if auto-scroll is enabled
+                if (autoScrollEnabled) {
                     container.scrollTop = container.scrollHeight;
                 }
                 setTimeout(typeNextChar, currentAnimSpeed);
@@ -276,37 +292,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 animationInProgress = false;
                 stopTypingSound();
                 removeEventListeners();
-                container.removeEventListener('scroll', onUserScroll); // Clean up event listener
-                // Ensure the container is scrolled to the bottom if user hasn't scrolled
-                if (!isUserScrolling) {
+                // Ensure the container is scrolled to the bottom if auto-scroll is enabled
+                if (autoScrollEnabled) {
                     container.scrollTop = container.scrollHeight;
                 }
                 if (callback) callback();
             }
-        }
+        }        
     
         // Event listeners to control animation speed
         function onKeyDown(event) {
             if (speedSetting === 'Normal') {
                 if (event.key === ' ') {
                     if (!isSpacePressed) {
-                        isSpacePressed      = true;
-                        currentAnimSpeed    = FASTER_ANIM_SPEED;
+                        isSpacePressed = true;
+                        currentAnimSpeed = FASTER_ANIM_SPEED;
                     }
                     event.preventDefault(); // Prevent scrolling when pressing space
                 }
             }
-    
+        
             // Skip the animation
             if (event.key === 'Enter') {
                 if (animationInProgress) {
                     animationInProgress = false;
-                    element.innerHTML  += text.slice(index);
+                    element.innerHTML += text.slice(index);
                     removeEventListeners();
                     stopTypingSound();
-                    container.removeEventListener('scroll', onUserScroll); // Clean up event listener
-                    // Ensure the container is scrolled to the bottom if user hasn't scrolled
-                    if (!isUserScrolling) {
+                    // Scroll to bottom if auto-scroll is enabled
+                    if (autoScrollEnabled) {
                         container.scrollTop = container.scrollHeight;
                     }
                     if (callback) callback();
@@ -547,6 +561,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 newTextElement.classList.add('story-text');
                 newTextElement.classList.add(alternate ? 'text-alternate-1' : 'text-alternate-2');
                 container.appendChild(newTextElement);
+
+                // Scroll to bottom if auto-scroll is enabled
+                if (autoScrollEnabled) {
+                    container.scrollTop = container.scrollHeight;
+                }
     
                 newTextElement.innerHTML = reflectionState[0]; // Display the reflection text
                 currentState = 'reflection';  // Set current state to 'reflection'
