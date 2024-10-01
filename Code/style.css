@@ -578,8 +578,8 @@ body {
     animation: glitchy-effect 1s ease-in-out forwards;
 }
 
-/* Media query for devices with a screen width up to 768px, fully chatGPT generated */
-@media only screen and (max-width: 768px) {
+/* Media query for devices with a screen width up to 960px fully chatGPT generated*/
+@media only screen and (max-width: 960px) {
     body {
         font-size: 10px; /* Base font size reduced from 16px to 10px */
     }
@@ -587,34 +587,38 @@ body {
     /* Main Content Area */
     .main-content {
         max-width: 100%; /* Use full width on smaller screens */
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
     }
 
-    /* Container */
+    /* Container (Story Text) */
     .container {
-        max-width: 100%;
+        max-width: 80%;
         padding-left: 5px;
         padding-right: 5px;
+        margin-right: 110px; /* Ensure space between container and control panel */
     }
 
     /* Story Text */
     .story-text {
-        font-size: 1.5em; /* 1.5 * 10px = 15px */
+        font-size: 1.4em; /* Slightly smaller to fit better */
     }
 
     /* Input Bar */
     .input-bar {
-        padding: 9px;
+        padding: 5px; /* Reduce padding */
     }
 
     .input-bar-container {
-        padding-bottom: 12px;
+        padding-bottom: 6px;
     }
 
-    /* Choices Container */
+    /* Choices Container (Word Options) */
     .choices-container {
         padding: 3px;
         min-width: 90px;
-        font-size: 1.5em; /* 1.5 * 10px = 15px */
+        font-size: 1.4em;
     }
 
     /* Player Input */
@@ -626,6 +630,10 @@ body {
     /* Control Panel */
     .control-panel {
         width: 100px; /* Adjusted for smaller screens */
+        height: 100vh;
+        overflow-y: auto;
+        padding: 10px;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     }
 
     .control-label {
@@ -637,25 +645,45 @@ body {
         padding: 3px 6px;
     }
 
-    /* Title Screen Buttons */
-    .title-button {
-        width: 240px;
-        height: 54px;
-        padding: 9px 18px;
-        font-size: 1.2em;
+    /* Title Screen */
+    .title-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        height: 100vh;
     }
 
     /* Title Logo */
     .title-logo {
-        scale: 0.54;
-        top: 25%;
-        left: 46%;
+        scale: 0.6;
+        top: auto; /* Remove specific positioning */
+        left: auto; /* Remove specific positioning */
+        transform: none; /* Ensure the logo is centered */
     }
 
     /* Title Title */
     .title-title {
         scale: 0.6;
-        top: 40%;
-        left: 50%;
+        top: auto; /* Remove specific positioning */
+        left: auto; /* Remove specific positioning */
+        transform: none; /* Ensure the title is centered */
+        margin-bottom: 20px;
+    }
+
+    /* Title Buttons */
+    .title-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Reduce gap between buttons */
+    }
+
+    .title-button {
+        width: 240px;
+        height: 54px;
+        padding: 9px 18px;
+        font-size: 1.2em;
     }
 }

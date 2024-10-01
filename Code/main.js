@@ -739,7 +739,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         audio.play();
 
-        vibrateDevice([50,250]);
+        vibrateDevice([200, 100, 200]);
     }
 
     function vibrateDevice(duration) {
