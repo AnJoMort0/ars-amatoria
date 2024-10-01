@@ -138,7 +138,7 @@ one more time...`,
             [
                 ['look', 'look_classroom'],
                 ['walk', 'walk_from_classroom'],
-                ['wait', 'wait_on_intro']
+                ['wait', 'wait_on_intro'],
             ],
             d
         ],
@@ -508,8 +508,9 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             choicesWrapper.classList.add('hidden'); // Hide the choices wrapper if it's a dead end
         } else {
             choicesWrapper.classList.remove('hidden');
-            // Dynamically set grid columns
-            choicesWrapper.style.gridTemplateColumns = `repeat(${choices.length}, 1fr)`;
+    
+            // Old dynamic grid columns setting
+            // choicesWrapper.style.gridTemplateColumns = `repeat(${choices.length}, 1fr)`;
     
             choices.forEach((choice) => {
                 const choiceWord    = choice[0];
@@ -529,7 +530,7 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             addChoiceClickEvents();
         }
         adjustContainerHeight();
-    }    
+    }
 
     function adjustContainerHeight() {
         const inputBar  = document.querySelector('.input-bar');
