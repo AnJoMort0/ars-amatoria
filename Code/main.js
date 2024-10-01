@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let choices = [...stateContent[1]]; // Copy the original choices
 
         // Lock certain states behind discovering other states
-        if (currentState === 'walk_from_classroom' && unlockedChoices['look_onIntro-look_at_corridor']) {
+        if (currentState === 'walk_on_intro' && unlockedChoices['look_onIntro-look_at_corridor']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_r')) {
                 storyStates[currentState][1].push(['restroom', 'w_cr_r']);
             }

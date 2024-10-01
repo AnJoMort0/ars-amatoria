@@ -47,11 +47,11 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             e
             ],
         'talk_on_intro': [
-            `You stand there, frozen for a second, your heart pounding. You open your mouth, the word talk swirling in your head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, you mutter...
+            `I stand there, frozen for a second, my heart pounding. I open my mouth, the word talk swirling in my head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, I mutter...
 
 “Okay, just... talk. You can do this. You’re talking... to yourself now. Perfect.”
 
-No one else hears it, of course. The crowd flows around you, oblivious to your internal monologue. And the girl? Yeah, she’s still there, still laughing, still... not talking to you.
+No one else hears it, of course. The crowd flows around me, oblivious to my internal monologue. And the girl? Yeah, she’s still there, still laughing, still... not talking to me.
 
 Great start, really.`, 
             [
@@ -62,7 +62,7 @@ Great start, really.`,
             d
         ],
         'look_onIntro': [
-            `You look at the...`, 
+            `I look at the...`, 
             [
                 ['corridor', 'look_at_corridor'],
                 ['girl', 'look_at_girl'],
@@ -112,7 +112,7 @@ Maybe if I stare hard enough, I’ll find it again.`,
                 d
             ],
     'walk_on_intro': [
-        `You walk towards...`, 
+        `I walk towards...`, 
         [
             ['girl', 'w_cr_g'],
             ['corridor', 'w_cr_c'],
@@ -160,7 +160,7 @@ She barely glances at me, her voice cold.
 “Cool.”
 
 I fumble for a response. 
-“Tho, I'm pretty sure I can still manage to find some time to buy you a drink.”
+“Though, I'm pretty sure I can still manage to find some time to buy you a drink.”
 
 She stops, turning to face me, her arms crossed. 
 “What do you want with me? Leave me alone!”
