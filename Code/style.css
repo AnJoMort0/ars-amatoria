@@ -35,7 +35,7 @@ body {
     justify-content: center;
     position: relative;
     width: 100%;
-    max-width: 1220px;
+    max-width: 1230px;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -57,7 +57,7 @@ body {
 }
 
 .story-text {
-    font-size: 1.5em;
+    font-size: 1.3em;
     line-height: 1.6;
     visibility: visible;
     white-space: pre-wrap;
@@ -72,7 +72,7 @@ body {
 .input-bar {
     position: fixed;
     height: auto;
-    padding: 15px;
+    padding: 10px;
     background-color: var(--accent-background-color);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.7);
     bottom: 0;
@@ -95,14 +95,14 @@ body {
         max-width: 800px;
         align-items: center;
         justify-content: center;
-        padding-bottom: 20px;
+        padding-bottom: 15px;
     }
         .choices-wrapper {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 10px;
             padding-bottom: 15px;
-            padding-top: 15px;
+            padding-top: 5px;
         }
         .choices-wrapper.hidden {
             display: none;
@@ -148,6 +148,7 @@ body {
     right: 0;
     height: 100%;
     overflow-y: auto;
+    scrollbar-color: var(--text-color-1) var(--accent-background-color) ;
 }
     .animation-control {
         background-color: var(--accent-background-color);
@@ -160,7 +161,7 @@ body {
         box-sizing: border-box;
     }
         .control-label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-bottom: 10px;
             text-align: center;
         }
@@ -174,7 +175,7 @@ body {
             color: var(--text-color-1);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: none;
-            font-size: 1.5em;
+            font-size: 1em;
             padding: 5px 10px;
             cursor: pointer;
         }
@@ -205,7 +206,7 @@ body {
     }
         .music-control .control-label,
         .sound-control .control-label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-bottom: 10px;
             text-align: center;
         }
@@ -221,7 +222,7 @@ body {
             color: var(--text-color-1);
             font-family: 'Playfair Display', serif;
             border: none;
-            font-size: 1.2em;
+            font-size: 1em;
             padding: 5px 10px;
             cursor: pointer;
         }
@@ -241,7 +242,7 @@ body {
         margin-top: 15px;
     }
         .auto-scroll-control .control-label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-bottom: 10px;
             text-align: center;
         }
@@ -255,7 +256,7 @@ body {
             color: var(--text-color-1);
             font-family: 'Playfair Display', serif;
             border: none;
-            font-size: 1.2em;
+            font-size: 1em;
             padding: 5px 10px;
             cursor: pointer;
         }
@@ -274,7 +275,7 @@ body {
         margin-top: 15px;
     }
         .flashing-images-control .control-label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-bottom: 10px;
             text-align: center;
         }
@@ -288,7 +289,7 @@ body {
             color: var(--text-color-1);
             font-family: 'Playfair Display', serif;
             border: none;
-            font-size: 1.2em;
+            font-size: 1em;
             padding: 5px 10px;
             cursor: pointer;
         }      
@@ -575,4 +576,86 @@ body {
 /* Glitch class for the body */
 .glitchy-transition {
     animation: glitchy-effect 1s ease-in-out forwards;
+}
+
+/* Media query for devices with a screen width up to 768px, fully chatGPT generated */
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: 10px; /* Base font size reduced from 16px to 10px */
+    }
+
+    /* Main Content Area */
+    .main-content {
+        max-width: 100%; /* Use full width on smaller screens */
+    }
+
+    /* Container */
+    .container {
+        max-width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    /* Story Text */
+    .story-text {
+        font-size: 1.5em; /* 1.5 * 10px = 15px */
+    }
+
+    /* Input Bar */
+    .input-bar {
+        padding: 9px;
+    }
+
+    .input-bar-container {
+        padding-bottom: 12px;
+    }
+
+    /* Choices Container */
+    .choices-container {
+        padding: 3px;
+        min-width: 90px;
+        font-size: 1.5em; /* 1.5 * 10px = 15px */
+    }
+
+    /* Player Input */
+    .player-input {
+        padding: 6px;
+        font-size: 1.2em; /* 1.2 * 10px = 12px */
+    }
+
+    /* Control Panel */
+    .control-panel {
+        width: 100px; /* Adjusted for smaller screens */
+    }
+
+    .control-label {
+        font-size: 1.2em; /* 1.2 * 10px = 12px */
+    }
+
+    .control-button {
+        font-size: 1.5em; /* 1.5 * 10px = 15px */
+        padding: 3px 6px;
+    }
+
+    /* Title Screen Buttons */
+    .title-button {
+        width: 240px;
+        height: 54px;
+        padding: 9px 18px;
+        font-size: 1.2em;
+    }
+
+    /* Title Logo */
+    .title-logo {
+        scale: 0.54;
+        top: 25%;
+        left: 46%;
+    }
+
+    /* Title Title */
+    .title-title {
+        scale: 0.6;
+        top: 40%;
+        left: 50%;
+    }
 }

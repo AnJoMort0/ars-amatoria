@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const glitchSounds          = ['sounds/glitch1.mp3', 'sounds/glitch2.mp3'];
     const typingSound           = new Audio('sounds/type.mp3');
     const bgMusic               = new Audio('sounds/music.mp3');
+    const clickSound            = new Audio('sounds/click.wav');
 
     const MUSIC_DEFAULT_VOL     = 1;
     const SFX_DEFAULT_VOL       = 0.1;
@@ -47,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentSpeedElement   = document.getElementById('currentSpeed');
     const speedHintElement      = document.getElementById('speedHint');
+
+    const allButtons = document.querySelectorAll('button');
+    allButtons.forEach(button => {
+        button.addEventListener('click', playClickSound);
+    });
 
     // Colour palette control
     let isPinkPalette       = true; // Start with the rose palette
@@ -695,6 +701,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function toggleSound() {
         soundEnabled = !soundEnabled;
+        clickSound.volume = soundEnabled ? SFX_DEFAULT_VOL : 0;
         if (soundEnabled) {
             typingSound.volume = SFX_DEFAULT_VOL;
             document.getElementById('soundToggle').textContent = 'On';
@@ -704,7 +711,20 @@ document.addEventListener("DOMContentLoaded", () => {
             typingSound.pause();
         }
         localStorage.setItem('soundEnabled', JSON.stringify(soundEnabled));
-    }    
+    }
+
+    let canPlayClickSound = true;
+    function playClickSound() {
+        if (canPlayClickSound) {
+            clickSound.currentTime = 0; // Reset the sound to the start
+            clickSound.play();
+            vibrateDevice(50);
+            canPlayClickSound = false;
+            setTimeout(() => {
+                canPlayClickSound = true; // Allow the sound to be played again after 300ms
+            }, 300); // Adjust the delay time as needed
+        }
+    }
 
     function playGlitchSound() {
         if (!soundEnabled) return;
@@ -718,6 +738,14 @@ document.addEventListener("DOMContentLoaded", () => {
         audio.playbackRate = Math.random() * 0.2 + 1;
         
         audio.play();
+
+        vibrateDevice([50,250]);
+    }
+
+    function vibrateDevice(duration) {
+        if (navigator.vibrate) {
+            navigator.vibrate(duration);
+        }
     }    
 
     playerInput.addEventListener('input', updateChoices);
