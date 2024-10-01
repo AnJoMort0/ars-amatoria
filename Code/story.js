@@ -29,7 +29,8 @@ one more time...`,
         [
             ['wait', 'wait_on_intro'],
             ['look', 'look_onIntro'],
-            ['walk', 'walk_from_classroom'],
+            ['walk', 'walk_on_intro'],
+            ['talk', 'talk_on_intro'],
         ],
         d
     ],
@@ -45,6 +46,21 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             [],
             e
             ],
+        'talk_on_intro': [
+            `You stand there, frozen for a second, your heart pounding. You open your mouth, the word talk swirling in your head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, you mutter...
+
+“Okay, just... talk. You can do this. You’re talking... to yourself now. Perfect.”
+
+No one else hears it, of course. The crowd flows around you, oblivious to your internal monologue. And the girl? Yeah, she’s still there, still laughing, still... not talking to you.
+
+Great start, really.`, 
+            [
+                ['wait', 'wait_on_intro'],
+                ['look', 'look_onIntro'],
+                ['walk', 'walk_on_intro'],
+            ],
+            d
+        ],
         'look_onIntro': [
             `You look at the...`, 
             [
@@ -61,7 +77,8 @@ The crowd swirls past, but all I can see is her.`,
                 [
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
-                    ['walk', 'walk_from_classroom'],
+                    ['walk', 'walk_on_intro'],
+                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
@@ -75,7 +92,8 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                 [
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
-                    ['walk', 'walk_from_classroom'],
+                    ['walk', 'walk_on_intro'],
+                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
@@ -88,16 +106,16 @@ Maybe if I stare hard enough, I’ll find it again.`,
                 [
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
-                    ['walk', 'walk_from_classroom'],
+                    ['walk', 'walk_on_intro'],
+                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
-    'walk_from_classroom': [
+    'walk_on_intro': [
         `You walk towards...`, 
         [
             ['girl', 'w_cr_g'],
             ['corridor', 'w_cr_c'],
-            ['restroom', 'w_cr_r']
         ],
         w
     ],
@@ -164,13 +182,13 @@ It’s subtle, like she’s not even thinking about it, but to me, it feels like
 My breath catches.
 This is it.`, 
             [
-                ['chitchat', 'cr_chichat'], 
+                ['chatter', 'cr_chatter'], 
                 ['compliment', 'cr_compliment'], 
-                ['chatter', 'cr_chatter'],
+                ['approach', 'cr_approach'],
             ],
             d
         ],
-            'cr_chichat': [
+            'cr_chatter': [
                 `I see her, just ahead, focused on her phone. My pulse quickens as I walk towards her, rehearsing the line in my head.
 
 I reach her, putting on my most nonchalant expression. 
@@ -207,7 +225,7 @@ My stomach churns as I turn away. The corridor feels colder, the laughter harshe
                 [],
                 e
             ],
-            'cr_chatter': [
+            'cr_approach': [
                 `She’s still standing there, leaning against the wall, her attention focused on her phone. I take a breath, steady my nerves, and walk over, this time with a plan that feels... normal.
 
 “Hey,” I say softly, just loud enough for her to hear. She glances up, surprised but not annoyed.
@@ -353,3 +371,7 @@ I played the game—pushing, pulling—but instead of making her want more, I ju
 
     'reflection': () => getReflectionState(reflectionIndex)
 };
+
+export function getOriginalStoryStates() {
+    return JSON.parse(JSON.stringify(storyStates)); // Return a copy of the original state
+}

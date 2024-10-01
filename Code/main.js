@@ -1,4 +1,6 @@
-import { storyStates } from './story.js';
+import { storyStates, getOriginalStoryStates } from './story.js';
+// Store the initial copy of storyStates
+let currentStoryStates = JSON.parse(JSON.stringify(storyStates));
 import { reflections, getReflectionState } from './special_events.js';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -164,9 +166,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     newGameButton.addEventListener('click', () => {
+        // Reset currentStoryStates to the original state
+        currentStoryStates = getOriginalStoryStates(); // Get a fresh copy of the original storyStates
+
         // Clear the saved game data
         localStorage.removeItem('unlockedChoices');
         unlockedChoices = {};
+
         isPinkPalette = true;
         localStorage.setItem('isPinkPalette', JSON.stringify(isPinkPalette));
 
@@ -372,7 +378,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const choicesWrapper        = document.getElementById('choicesWrapper');
         choicesWrapper.innerHTML    = ''; // Clear previous choices
         const stateContent          = storyStates[currentState];
-        const choices               = stateContent[1];
+        let choices = [...stateContent[1]]; // Copy the original choices
+
+        // Lock certain states behind discovering other states
+        if (currentState === 'walk_from_classroom' && unlockedChoices['look_onIntro-look_at_corridor']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_r')) {
+                storyStates[currentState][1].push(['restroom', 'w_cr_r']);
+            }
+        }
+
+        choices = [...storyStates[currentState][1]];
     
         if (choices.length === 0) {
             choicesWrapper.classList.add('hidden'); // Hide the choices wrapper if it's a dead end
