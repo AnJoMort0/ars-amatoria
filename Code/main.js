@@ -211,7 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
         animationInProgress = true;
         let currentAnimSpeed;
         let isSpacePressed  = false;
-
+        let isUserScrolling = false;
+    
         // Start the sound and loop it until the typing animation finishes
         function startTypingSound() {
             if (!soundEnabled) return;
@@ -232,10 +233,10 @@ document.addEventListener("DOMContentLoaded", () => {
             typingSound.pause();
             typingSound.currentTime = 0; // Reset the sound for next use
         }        
-
+    
         // Determine the animation speed based on the setting
         const speedSetting  = animationSpeeds[currentSpeedIndex];
-
+    
         if (speedSetting === 'Normal') {
             currentAnimSpeed = DEFAULT_ANIM_SPEED;
         } else if (speedSetting === 'Fast') {
@@ -249,27 +250,41 @@ document.addEventListener("DOMContentLoaded", () => {
             if (callback) callback();
             return;
         }
-
+    
         startTypingSound();
-
+    
+        // Add scroll event listener to detect user scrolling
+        function onUserScroll() {
+            if (animationInProgress) {
+                isUserScrolling = true; // User has scrolled manually
+                container.removeEventListener('scroll', onUserScroll);
+            }
+        }
+        container.addEventListener('scroll', onUserScroll);
+    
         function typeNextChar() {
             if (index < text.length && animationInProgress) {
                 element.innerHTML += text.charAt(index);
                 index++;
-                // Scroll to bottom after adding a character
-                container.scrollTop = container.scrollHeight;
+                // Automatic scrolling unless user has scrolled manually
+                if (!isUserScrolling) {
+                    container.scrollTop = container.scrollHeight;
+                }
                 setTimeout(typeNextChar, currentAnimSpeed);
             } else {
                 // Animation finished
                 animationInProgress = false;
                 stopTypingSound();
                 removeEventListeners();
-                // Ensure the container is scrolled to the bottom
-                container.scrollTop = container.scrollHeight;
+                container.removeEventListener('scroll', onUserScroll); // Clean up event listener
+                // Ensure the container is scrolled to the bottom if user hasn't scrolled
+                if (!isUserScrolling) {
+                    container.scrollTop = container.scrollHeight;
+                }
                 if (callback) callback();
             }
         }
-
+    
         // Event listeners to control animation speed
         function onKeyDown(event) {
             if (speedSetting === 'Normal') {
@@ -281,18 +296,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     event.preventDefault(); // Prevent scrolling when pressing space
                 }
             }
-
+    
             // Skip the animation
             if (event.key === 'Enter') {
                 if (animationInProgress) {
                     animationInProgress = false;
                     element.innerHTML  += text.slice(index);
                     removeEventListeners();
+                    stopTypingSound();
+                    container.removeEventListener('scroll', onUserScroll); // Clean up event listener
+                    // Ensure the container is scrolled to the bottom if user hasn't scrolled
+                    if (!isUserScrolling) {
+                        container.scrollTop = container.scrollHeight;
+                    }
                     if (callback) callback();
                 }
             }
         }
-
+    
         function onKeyUp(event) {
             if (speedSetting === 'Normal') {
                 if (event.key === ' ') {
@@ -301,20 +322,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
-
+    
         function removeEventListeners() {
             document.removeEventListener('keydown', onKeyDown);
             document.removeEventListener('keyup', onKeyUp);
         }
-
+    
         if (speedSetting !== 'None') {
             document.addEventListener('keydown', onKeyDown);
             document.addEventListener('keyup', onKeyUp);
         }
-
+    
         // Start typing
         typeNextChar();
-    }
+    }    
 
     function showInputBar() {
         inputBar.classList.add('show');
