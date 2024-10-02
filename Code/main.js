@@ -393,6 +393,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 storyStates[currentState][1].push(['restroom', 'w_cr_r']);
             }
         }
+        if ((currentState === 'intro' || currentState === 'look_at_floor' || currentState === 'look_at_girl' || currentState === 'look_at_corridor') && visitedStates['talk_on_intro']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'talk_again')) {
+                storyStates[currentState][1].push(['talk', 'talk_again']);
+            }
+        }
+        
+        // Remove certain states if they have already been explored
+        if (visitedStates['talk_on_intro']) {
+            storyStates['intro'][1]             = storyStates['intro'][1].filter(choice             => choice[1] !== 'talk_on_intro');
+            storyStates['look_at_floor'][1]     = storyStates['look_at_floor'][1].filter(choice     => choice[1] !== 'talk_on_intro');
+            storyStates['look_at_girl'][1]      = storyStates['look_at_girl'][1].filter(choice      => choice[1] !== 'talk_on_intro');
+            storyStates['look_at_corridor'][1]  = storyStates['look_at_corridor'][1].filter(choice  => choice[1] !== 'talk_on_intro');
+        }
+        if (visitedStates['talk_again']) {
+            storyStates['intro'][1]             = storyStates['intro'][1].filter(choice             => choice[1] !== 'talk_again');
+            storyStates['look_at_floor'][1]     = storyStates['look_at_floor'][1].filter(choice     => choice[1] !== 'talk_again');
+            storyStates['look_at_girl'][1]      = storyStates['look_at_girl'][1].filter(choice      => choice[1] !== 'talk_again');
+            storyStates['look_at_corridor'][1]  = storyStates['look_at_corridor'][1].filter(choice  => choice[1] !== 'talk_again');
+        }
 
         choices = [...storyStates[currentState][1]];
     

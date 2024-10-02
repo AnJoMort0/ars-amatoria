@@ -47,13 +47,27 @@ As I look back at the corridor, the girl is not there anymore. I've lost my chan
             e
             ],
         'talk_on_intro': [
-            `I stand there, frozen for a second, my heart pounding. I open my mouth, the word talk swirling in my head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, I mutter...
+            `I stand there, frozen for a second, my heart pounding. I open my mouth, the word "talk" swirling in my head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, I mutter...
 
 “Okay, just... talk. You can do this. You’re talking... to yourself now. Perfect.”
 
 No one else hears it, of course. The crowd flows around me, oblivious to my internal monologue. And the girl? Yeah, she’s still there, still laughing, still... not talking to me.
 
 Great start, really.`, 
+            [
+                ['wait', 'wait_on_intro'],
+                ['look', 'look_onIntro'],
+                ['walk', 'walk_on_intro'],
+            ],
+            d
+        ],
+        'talk_again': [
+            `"Talk, it's not that hard... I'm talking to myself again, am I not? Nice."
+
+This time, a random guy walking near by hears it.
+"Weirdo."
+
+Great.`, 
             [
                 ['wait', 'wait_on_intro'],
                 ['look', 'look_onIntro'],
@@ -78,6 +92,7 @@ The crowd swirls past, but all I can see is her.`,
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
                     ['walk', 'walk_on_intro'],
+                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
@@ -92,6 +107,7 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
                     ['walk', 'walk_on_intro'],
+                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
@@ -105,6 +121,7 @@ Maybe if I stare hard enough, I’ll find it again.`,
                     ['wait', 'wait_on_intro'],
                     ['look', 'look_onIntro'],
                     ['walk', 'walk_on_intro'],
+                    ['talk', 'talk_on_intro'],
                 ],
                 d
             ],
