@@ -149,15 +149,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Check if there are unlocked choices
+    // Check if there are unlocked choices and visitedStates
     let unlockedChoices = {};
+    let visitedStates   = {};
     if (localStorage.getItem('unlockedChoices')) {
-        unlockedChoices = JSON.parse(localStorage.getItem('unlockedChoices'));
+        unlockedChoices         = JSON.parse(localStorage.getItem('unlockedChoices'));
         continueButton.disabled = false;
     } else {
-        continueButton.disabled = true;
+        continueButton.disabled     = true;
         continueButton.style.cursor = 'not-allowed';
     }
+    if (localStorage.getItem('visitedStates')) {
+        visitedStates           = JSON.parse(localStorage.getItem('visitedStates'));
+    }
+
     // Title Screen
     continueButton.addEventListener('click', () => {
         if (!continueButton.disabled) {
@@ -171,7 +176,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Clear the saved game data
         localStorage.removeItem('unlockedChoices');
+        localStorage.removeItem('visitedStates')
         unlockedChoices = {};
+        visitedStates   = {};
 
         isPinkPalette = true;
         localStorage.setItem('isPinkPalette', JSON.stringify(isPinkPalette));
@@ -381,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let choices = [...stateContent[1]]; // Copy the original choices
 
         // Lock certain states behind discovering other states
-        if (currentState === 'walk_on_intro' && unlockedChoices['look_onIntro-look_at_corridor']) {
+        if (currentState === 'walk_on_intro' && visitedStates['look_at_corridor']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_r')) {
                 storyStates[currentState][1].push(['restroom', 'w_cr_r']);
             }
@@ -493,6 +500,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!unlockedChoices[choiceKey]) {
             unlockedChoices[choiceKey] = true;
             localStorage.setItem('unlockedChoices', JSON.stringify(unlockedChoices));
+        }
+        if (!visitedStates[currentState]) {
+            visitedStates[currentState] = true;
+            localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
         }
     }    
 
