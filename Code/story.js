@@ -28,7 +28,7 @@ once again...
 one more time...`,
         [
             ['wait', 'wait_on_intro'],
-            ['look', 'look_onIntro'],
+            ['look', 'look_on_intro'],
             ['walk', 'walk_on_intro'],
             ['talk', 'talk_on_intro'],
         ],
@@ -56,7 +56,7 @@ No one else hears it, of course. The crowd flows around me, oblivious to my inte
 Great start, really.`, 
             [
                 ['wait', 'wait_on_intro'],
-                ['look', 'look_onIntro'],
+                ['look', 'look_on_intro'],
                 ['walk', 'walk_on_intro'],
             ],
             d
@@ -70,12 +70,12 @@ This time, a random guy walking near by hears it.
 Great.`, 
             [
                 ['wait', 'wait_on_intro'],
-                ['look', 'look_onIntro'],
+                ['look', 'look_on_intro'],
                 ['walk', 'walk_on_intro'],
             ],
             d
         ],
-        'look_onIntro': [
+        'look_on_intro': [
             `I look at the...`, 
             [
                 ['corridor', 'look_at_corridor'],
@@ -90,7 +90,7 @@ Toward the other side of the hallway, a sign marks the restroom door, just a few
 The crowd swirls past, but all I can see is her.`, 
                 [
                     ['wait', 'wait_on_intro'],
-                    ['look', 'look_onIntro'],
+                    ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
                 ],
@@ -105,7 +105,7 @@ She’s perfect, in the kind of way that makes my heart race and my stomach chur
 I’ve tried not to stare, tried to convince myself that it’s just a crush, but every time I see her, it’s like the world narrows down to just her and me.`, 
                 [
                     ['wait', 'wait_on_intro'],
-                    ['look', 'look_onIntro'],
+                    ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
                 ],
@@ -119,9 +119,23 @@ Somewhere down there, hidden in the grime of forgotten gum and half-wiped spills
 Maybe if I stare hard enough, I’ll find it again.`, 
                 [
                     ['wait', 'wait_on_intro'],
-                    ['look', 'look_onIntro'],
+                    ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
+                ],
+                d
+            ],
+            'look_at_jackson': [
+                `I glance over and catch Jackson’s eye. He flashes me a grin. I smirk back, but then he notices where my gaze drifts—to her.
+Jackson raises an eyebrow, his grin widening, the kind that says "you’ve got this", and gives me a playful nod. For a moment, everything feels easy. He knows what’s up, always the confident one, never overthinking like I do. .
+With an exaggerated look, he tilts his head towards her, mouthing, "just go."
+I can almost hear his voice echoing in my head: 
+"Don’t overthink it, man. Just be casual, be honest. No games, no tricks. Just talk to her."
+
+But what does he know? That loser advice might work for him, but girls... girls like games. They need to be played. That’s the only way to win. Honesty? That’s a surefire way to blow it.`, 
+                [
+                    ['look', 'look_on_intro'],
+                    ['walk', 'walk_on_intro'],
                 ],
                 d
             ],

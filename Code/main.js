@@ -398,6 +398,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 storyStates[currentState][1].push(['talk', 'talk_again']);
             }
         }
+        if (currentState === 'look_on_intro' && visitedStates['wait_on_intro']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'look_at_jackson')) {
+                storyStates[currentState][1].push(['jackson', 'look_at_jackson']);
+            }
+        }
         
         // Remove certain states if they have already been explored
         if (visitedStates['talk_on_intro']) {
@@ -520,10 +525,6 @@ document.addEventListener("DOMContentLoaded", () => {
             unlockedChoices[choiceKey] = true;
             localStorage.setItem('unlockedChoices', JSON.stringify(unlockedChoices));
         }
-        if (!visitedStates[currentState]) {
-            visitedStates[currentState] = true;
-            localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
-        }
     }    
 
     function checkPlayerChoice() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
@@ -564,6 +565,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }        
 
     function proceedToNextState(nextStateName) { // moderately assisted by chatGPT for the color changing and reflections case
+    
+        if (!visitedStates[nextStateName]) {
+            visitedStates[nextStateName] = true;
+            localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
+        }
+        
         hideInputBar();
     
         container.appendChild(document.createElement('br'));
