@@ -520,7 +520,7 @@ Jessica chuckles awkwardly, trying to stay polite.
 
 “Exactly! It’s just that, you know, if you were with me, you’d never have to worry about being cheated on or lied to. I’d treat you like you deserve. Like, I’ve seen some of the people around here... trust me, you’d be making a mistake with anyone but me.”
 
-Jeessica’s polite smile fades completely and she glances away, clearly uncomfortable.
+Jessica’s polite smile fades completely and she glances away, clearly uncomfortable.
 “That’s... uh, good to know.”
 
 I feel a pang of frustration, but I try to keep my tone light.

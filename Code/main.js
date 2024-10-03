@@ -646,6 +646,11 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
         }
 
+        if (nextStateName === 'the_end') {
+            // Hide the input bar entirely
+            inputBar.style.display = 'none';
+        }
+
         if (nextStateName === 'final') {
             isFirstInput = true;  // Reset this flag when entering 'final' it is important for the hints
         }
