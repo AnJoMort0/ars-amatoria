@@ -150,18 +150,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Check if there are unlocked choices and visitedStates
-    let unlockedChoices = {};
-    let visitedStates   = {};
-    if (localStorage.getItem('unlockedChoices')) {
-        unlockedChoices         = JSON.parse(localStorage.getItem('unlockedChoices'));
+    // Check if there are visitedStates
+    let visitedStates = {};
+
+    // Load visitedStates from localStorage if available
+    if (localStorage.getItem('visitedStates')) {
+        visitedStates = JSON.parse(localStorage.getItem('visitedStates'));
+    }
+
+    // Disable the "Continue" button if no states have been visited yet
+    if (Object.keys(visitedStates).length > 0) {
         continueButton.disabled = false;
     } else {
-        continueButton.disabled     = true;
+        continueButton.disabled = true;
         continueButton.style.cursor = 'not-allowed';
-    }
-    if (localStorage.getItem('visitedStates')) {
-        visitedStates           = JSON.parse(localStorage.getItem('visitedStates'));
     }
 
     // Title Screen
@@ -196,8 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function clearGameData() {
         localStorage.removeItem('currentState');
-        localStorage.removeItem('unlockedChoices');
-        unlockedChoices = {};
         localStorage.removeItem('visitedStates')
         visitedStates   = {};
         localStorage.removeItem('reflectionIndex');
@@ -250,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animationInProgress = true;
         let currentAnimSpeed;
         let isSpacePressed  = false;
-        let isUserScrolling = false;
     
         // Start the sound and loop it until the typing animation finishes
         function startTypingSound() {
@@ -291,15 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         startTypingSound();
-    
-        // Add scroll event listener to detect user scrolling
-        function onUserScroll() {
-            if (animationInProgress) {
-                isUserScrolling = true; // User has scrolled manually
-                container.removeEventListener('scroll', onUserScroll);
-            }
-        }
-        container.addEventListener('scroll', onUserScroll);
     
         function typeNextChar() {
             if (index < text.length && animationInProgress) {
@@ -458,8 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
             choices.forEach((choice) => {
                 const choiceWord    = choice[0];
                 const nextState     = choice[1];
-                const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
-                const isUnlocked    = unlockedChoices[choiceKey];     // Check if this choice is unlocked
+                const isUnlocked    = visitedStates[nextState]; // Check if the state has been visited
                 const censoredWord  = isUnlocked ? choiceWord : '-'.repeat(choiceWord.length);
                 const choiceElement = document.createElement('div');
                 choiceElement.classList.add('choices-container');
@@ -516,10 +505,9 @@ document.addEventListener("DOMContentLoaded", () => {
         choices.forEach((choice, i) => {
             const choiceWord    = choice[0];
             const nextState     = choice[1];
-            const choiceKey     = `${currentState}-${nextState}`;
             let displayWord     = '';
     
-            if (unlockedChoices[choiceKey]) {
+            if (visitedStates[nextState]) {
                 displayWord = choiceWord;
             } else {
                 // Uncensor letters present in inputValue, regardless of position
@@ -537,11 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
             choiceElements[i].textContent = displayWord;
     
             // Set the cursor
-            if (unlockedChoices[choiceKey] || inputValue === choiceWord.toLowerCase()) {
-                choiceElements[i].style.cursor = 'pointer';
-            } else {
-                choiceElements[i].style.cursor = 'not-allowed';
-            }
+            choiceElements[i].style.cursor = visitedStates[nextState] ? 'pointer' : 'not-allowed';
         });
     }    
 
@@ -550,28 +534,21 @@ document.addEventListener("DOMContentLoaded", () => {
         choiceElements.forEach((choiceElement, i) => {
             const choiceWord    = storyStates[currentState][1][i][0];
             const nextState     = storyStates[currentState][1][i][1];
-            const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
 
             choiceElement.addEventListener('click', () => {
                 const inputValue = playerInput.value.toLowerCase().trim();
     
-                if (unlockedChoices[choiceKey] || inputValue === choiceWord.toLowerCase()) {
-                    // Unlock the choice with the combination of currentState and nextState
-                    unlockChoice(currentState, nextState);
+                if (visitedStates[nextState] || inputValue === choiceWord.toLowerCase()) {
+                    // Unlock the choice
+                    if (!visitedStates[nextState]) {
+                        visitedStates[nextState] = true;
+                        localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
+                    }
                     proceedToNextState(nextState);
                 }
             });
         });
-    }    
-
-    function unlockChoice(currentState, nextState) { // Heavily chatGPT assisted
-        const choiceKey = `${currentState}-${nextState}`;
-        
-        if (!unlockedChoices[choiceKey]) {
-            unlockedChoices[choiceKey] = true;
-            localStorage.setItem('unlockedChoices', JSON.stringify(unlockedChoices));
-        }
-    }    
+    } 
 
     function checkPlayerChoice() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
         
@@ -594,7 +571,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // If the current state is 'final'
         if (currentState === 'final') {
             if (!inputValue.includes('s') && !inputValue.includes('t') && !inputValue.includes('o') && !inputValue.includes('p')) {
-                playerInput.value = ''
+                playerInput.value = '';
                 document.body.classList.add('glitchy-transition');
                 playGlitchSound();
                 setTimeout(() => {
@@ -628,11 +605,8 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < choices.length; i++) {
             const choiceWord    = choices[i][0].toLowerCase();
             const nextState     = choices[i][1];
-            const choiceKey     = `${currentState}-${nextState}`; // Create a unique key for the choice
     
             if (inputValue === choiceWord) {
-                // Unlock the choice with the combination of currentState and nextState
-                unlockChoice(currentState, nextState);
                 proceedToNextState(nextState);
                 return;
             }

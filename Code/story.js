@@ -88,6 +88,7 @@ Great.`,
                 ['wait', 'wait_on_intro'],
                 ['look', 'look_on_intro'],
                 ['walk', 'walk_on_intro'],
+                ['stare', 'stare_on_intro'],
             ],
             d
         ],
