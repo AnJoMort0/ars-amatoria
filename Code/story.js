@@ -1,4 +1,4 @@
-import { getReflectionState } from './special_events.js';
+import { getReflectionState } from './reflections.js';
 
 // Placeholders
 const d = "What do you do?";
@@ -243,6 +243,55 @@ My stomach twists.
 This was supposed to work.
 
 It always works... doesn’t it?`, 
+            [],
+            e
+        ],
+        'w_cr_outside': [
+            `I step outside the school, the cool evening breeze hitting my face.
+My mind is focused. She’ll be leaving any minute now. I’ve seen this play out before. I already know the path she takes—down the quiet street, past the park, where there’s rarely anyone around. It’s perfect.
+This time, I have the advantage. I know her, even if she doesn’t know me—yet.
+I stop at the corner near the park entrance, pretending to check my phone, but my eyes keep darting toward the school.
+Finally, I see her. She steps out of the building. I know she’ll take a left at the next block.
+I fall into step behind her, keeping my distance at first.
+She’s alone, just like always.
+She turns down the path toward the park, exactly as I expected. I pick up my pace, drawing closer with every step, though I make sure to stay just far enough back that she won’t hear me. Not yet.
+I speed up, closing the gap between us. I call out.
+“Hey, uh, excuse me!”
+
+My voice comes out a little louder than I intended, and she turns around, startled, her eyes widening in confusion.
+
+“Do I... know you?”
+She takes a small step back, eyeing me cautiously.
+
+“No, no, we’ve never met,”
+I say, though the words feel strange in my mouth, because it’s not true—not really
+“I just... I don’t know, thought you looked like someone I might know.”
+
+Her expression shifts—she’s not buying it.
+“Right... okay. Well, I’m kinda in a hurry.”
+
+I step a little closer.
+“You’re Jessica, right?”
+
+Her face pales slightly.
+“How do you...?”
+
+I shrug, trying to laugh it off, but it sounds hollow.
+“Just a guess. I think I’ve heard your name before.”
+
+She shakes her head, clearly uneasy now, taking another step back.
+“Look, I don’t know who you are, but this is getting weird. Please... just leave me alone.”
+
+The words sting, but I push on, stepping even closer.
+“No, wait, I didn’t mean to scare you. I just thought maybe we could, I don’t know, talk?”
+
+Her eyes dart around, looking for a way out, and she clutches her bag tightly.
+“No. Leave me alone.”
+
+Before I can say anything else, she turns and walks quickly away, her pace almost a jog.
+I stand there, watching her disappear down the path, my heart sinking.
+
+I blew it. Again.`, 
             [],
             e
         ],

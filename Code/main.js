@@ -1,7 +1,7 @@
 import { storyStates, getOriginalStoryStates } from './story.js';
 // Store the initial copy of storyStates
 let currentStoryStates = JSON.parse(JSON.stringify(storyStates));
-import { reflections, getReflectionState } from './special_events.js';
+import { reflections, getReflectionState } from './reflections.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     // GENERAL VALUES
@@ -393,6 +393,12 @@ document.addEventListener("DOMContentLoaded", () => {
             || visitedStates['stare_on_intro'])) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_friends')) {
                 storyStates[currentState][1].push(['friends', 'w_cr_friends']);
+            }
+        }
+        if (currentState === 'walk_on_intro'
+            && visitedStates['cr_approach']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_outside')) {
+                storyStates[currentState][1].push(['outside', 'w_cr_outside']);
             }
         }
         if ((currentState === 'intro' || currentState === 'look_at_floor' || currentState === 'look_at_girl' || currentState === 'look_at_corridor' || currentState === 'look_at_jackson')

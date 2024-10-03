@@ -6,4 +6,4 @@ gossip
 talk and talk again are in?
 
 
-To test the end: {"intro-look_on_intro":true,"look_on_intro-look_at_corridor":true,"look_at_corridor-walk_on_intro":true,"walk_on_intro-w_cr_r":true,"w_cr_r-cr_approach":true,"cr_approach-ex_compliment":true,"intro-walk_on_intro":true,"w_cr_r-cr_hide":true,"cr_approach-ex_gossip":true,"intro-wait_on_intro":true,"walk_on_intro-w_cr_g":true,"look_at_corridor-wait_on_intro":true,"cr_approach-ex_touch":true,"cr_approach-ex_stop":true,"cr_approach-ex_recall":true,"walk_on_intro-final":true}
+To test the end: {"walk_on_intro":true,"w_cr_g":true,"intro":true,"look_on_intro":true,"look_at_girl":true,"look_at_corridor":true,"w_cr_r":true,"cr_approach":true,"ex_stop":true,"w_cr_outside":true,"ex_compliment":true,"cr_hide":true,"wait_on_intro":true,"ex_touch":true,"ex_gossip":true,"ex_recall":true,"final":true}
