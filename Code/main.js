@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentState            = 'intro';  // Starting state is 'intro'
     let animationInProgress     = false;
     let alternate               = false;    // For the text colour
+    let isFirstInput            = true;     // For the final glitch hints
 
     const glitchSounds          = ['sounds/glitch1.mp3', 'sounds/glitch2.mp3'];
     const typingSound           = new Audio('sounds/type.mp3');
@@ -174,12 +175,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Reset currentStoryStates to the original state
         currentStoryStates = getOriginalStoryStates(); // Get a fresh copy of the original storyStates
 
-        // Clear the saved game data
-        localStorage.removeItem('unlockedChoices');
-        localStorage.removeItem('visitedStates')
-        unlockedChoices = {};
-        visitedStates   = {};
-
+        clearGameData();
+        
         isPinkPalette = true;
         localStorage.setItem('isPinkPalette', JSON.stringify(isPinkPalette));
 
@@ -190,15 +187,22 @@ document.addEventListener("DOMContentLoaded", () => {
         currentState = 'intro';
         localStorage.setItem('currentState', currentState);
 
-        localStorage.removeItem('reflectionIndex');
-        reflectionIndex = 0;
-
         hideTitleScreen(false); // Pass false to indicate new game
     });
 
     updateAnimationSpeedDisplay();
 
     // FUNCTIONS
+
+    function clearGameData() {
+        localStorage.removeItem('currentState');
+        localStorage.removeItem('unlockedChoices');
+        unlockedChoices = {};
+        localStorage.removeItem('visitedStates')
+        visitedStates   = {};
+        localStorage.removeItem('reflectionIndex');
+        reflectionIndex = 0;
+    }
 
     function hideTitleScreen(isContinuing) {
         continueButton.disabled     = true;
@@ -400,7 +404,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (currentState === 'look_on_intro' && visitedStates['wait_on_intro']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'look_at_jackson')) {
-                storyStates[currentState][1].push(['jackson', 'look_at_jackson']);
+                storyStates[currentState][1].push(['Jackson', 'look_at_jackson']);
+            }
+        }
+        if (currentState === 'walk_on_intro' && visitedStates['wait_on_intro'] 
+            && visitedStates['ex_stop'] 
+            && visitedStates['ex_touch'] 
+            && visitedStates['ex_recall'] 
+            && visitedStates['ex_compliment']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'final')) {
+                storyStates[currentState][1].push(['Jackson', 'final']);
             }
         }
         
@@ -460,6 +473,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const inputValue    = playerInput. value.toLowerCase().trim();
         const stateContent  = storyStates[currentState];
         const choices       = stateContent[1];
+
+        if (currentState === 'final') { // Glitchy effect to hint towards the end - lightly chatGPT assisted
+            if (isFirstInput) {
+                // If this is the first input, trigger the glitch effect
+                isFirstInput = false;  // Set the flag so the glitch only happens once
+                document.body.classList.add('glitchy-transition');
+                playGlitchSound();
+                setTimeout(() => {
+                    document.body.classList.remove('glitchy-transition');
+                }, 500);
+            } else if (inputValue.includes('s') || inputValue.includes('t') || inputValue.includes('o') || inputValue.includes('p')) {
+                // If the first letter typed is 'S', 'T', 'O', or 'P', trigger a glitch effect
+                document.body.classList.add('glitchy-transition');
+                playGlitchSound();
+                setTimeout(() => {
+                    document.body.classList.remove('glitchy-transition');
+                }, 500);
+            }
+        }
     
         if (choices.length === 0) {
             return;
@@ -528,6 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }    
 
     function checkPlayerChoice() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
+        
         if (animationInProgress) {
             return; // Do nothing while animation is in progress
         }
@@ -535,6 +568,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const inputValue    = playerInput.value.toLowerCase().trim();
         const stateContent  = storyStates[currentState];
         const choices       = stateContent[1];
+
+        // If the current state is 'final'
+        if (currentState === 'final') {
+            document.body.classList.add('glitchy-transition');
+            playGlitchSound();
+            setTimeout(() => {
+                document.body.classList.remove('glitchy-transition');
+            }, 500);
+            if (inputValue === '') {
+                // If Enter is pressed with no input, go back to 'intro'
+                proceedToNextState('intro');
+            } else if (inputValue === 'stop') {
+                // If the player types "stop" and presses Enter, go to 'the_end'
+                proceedToNextState('the_end');
+            }
+            return;
+        }
     
         // Special handling for the reflection state
         if (currentState === 'reflection') {
@@ -565,10 +615,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }        
 
     function proceedToNextState(nextStateName) { // moderately assisted by chatGPT for the color changing and reflections case
-    
+
         if (!visitedStates[nextStateName]) {
             visitedStates[nextStateName] = true;
             localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
+        }
+
+        if (nextStateName === 'final') {
+            isFirstInput = true;  // Reset this flag when entering 'final' it is important for the hints
         }
         
         hideInputBar();
@@ -633,6 +687,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;  // Exit early, skip further logic
             }
     
+        } else if(nextStateName === 'the_end') {
+            container.innerHTML = '';   // Clear the story container
+
+            document.documentElement.style.setProperty('--final-background-color', '#4a5333');
+            document.documentElement.style.setProperty('--final-accent-color', '#6c8365');
+            document.documentElement.style.setProperty('--final-text-color', '#e6e8e6');
+
+            if (glitchEnabled) {
+                document.body.classList.add('glitchy-transition');
+                playGlitchSound();
+    
+                setTimeout(() => {
+                    if (isPinkPalette) {
+                        document.body.classList.remove('blue-palette');
+                        document.body.classList.add('calm-palette');
+                    } else {
+                        document.body.classList.remove('pink-palette');
+                        document.body.classList.add('calm-palette');
+                    }
+                }, 500);
+            } else {
+                if (isPinkPalette) {
+                    document.body.classList.remove('blue-palette');
+                    document.body.classList.add('calm-palette');
+                } else {
+                    document.body.classList.remove('pink-palette');
+                    document.body.classList.add('calm-palette');
+                }
+            }
         } else {
             alternate = !alternate;
         }
@@ -802,9 +885,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playerInput.addEventListener('input', updateChoices);
 
+    document.addEventListener("keydown", (e) => {
+        if (currentState === 'the_end' && e.key === 'Enter' && !animationInProgress) {
+            triggerFadeToBlack();
+        }
+    });
+    
+    function triggerFadeToBlack() {
+        const fadeScreen = document.getElementById('fadeScreen');
+        
+        // Start the fade
+        fadeScreen.style.opacity = '1';
+    
+        // After the fade, clear the local storage and return to main menu
+        setTimeout(() => {
+            clearGameData();
+            window.location.reload();
+        }, 5000); // Match the fade-out duration
+    }
+
     playerInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !animationInProgress) {
             checkPlayerChoice();
         }
-    });    
+    });
 });    

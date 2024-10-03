@@ -396,6 +396,106 @@ I played the game—pushing, pulling—but instead of making her want more, I ju
                     [],
                     e
                 ],
+    'final': [
+        `I’ve tried almost everything.
+My chest feels tight as I weave through the crowd, my heart pounding in frustration. Nothing’s working.
+Every line, every move, it’s all falling apart, no matter how many times I start over.
+I need help—Jackson might be my last chance to make sense of this mess, even if his advice never felt like the good thing for me.
+I spot him leaning casually against the wall, chatting with someone, but I push through, determined.
+“Hey, Jackson,” I blurt, my voice more desperate than I’d like.
+
+He looks up, eyebrows raised, sensing the urgency in my tone.
+“Whoa, you alright, man? Did you bomb the test so badly?”
+
+I hesitate, the weight of the secret I’m carrying gnawing at me. How can I explain this without sounding insane?
+I’ve reset this moment over and over, trying to crack the code, to win her over... but I can’t tell him that. He’d never believe me.
+I take a breath.
+“I’ve... I’ve tried everything,” I say, avoiding his eyes.
+“But nothing’s working. I keep screwing it up. It’s like no matter what I do, I can’t get it right.”
+
+Jackson frowns, confused.
+“Everything? Dude, you’re just talking about a girl, right? Why do you sound like you’re in some kind of life-or-death situation?”
+
+I swallow hard, glancing back toward the girl, Jessica, still standing with her friends, laughing, completely oblivious to the storm raging in my mind.
+“It’s... complicated,” I mumble, choosing my words carefully. 
+“I keep trying, you know? Trying different things, but... I don’t know. It feels like I’m stuck. Like no matter what I do, it doesn’t change.”
+
+Jackson’s eyes narrow, but he doesn’t push. His tone softens.
+“Look, you’re overthinking this. You’re making it harder than it has to be. Just talk to her, man. Be yourself. Stop trying all these weird tactics or whatever. It’s not some game.”
+
+I want to argue, to tell him he doesn’t understand, but I bite my tongue.
+The time resets, the failures, the endless cycles—he can’t know.
+Instead, I clench my fists, trying to keep my frustration from boiling over.
+
+Jackson continues, his voice calm and steady.
+“You’ve got to stop putting so much pressure on this. Just go talk to her like you’d talk to anyone else. Be honest. You’ve got nothing to lose, right?”
+
+I open my mouth to protest, but he holds up a hand to stop me.
+“If you keep playing these games, man, you’re gonna lose way more than just her.”
+He pauses, locking eyes with me.
+“You might get her attention for a minute, but you’ll never get something real if you keep this up. You’ll lose whatever chemistry you might end up having. And worse, you’re gonna lose yourself in the process.”
+
+The words hit harder than I expect, cutting through my confusion.
+“What do you mean, lose myself?”
+
+Jackson shrugs.
+“You think you’re in control with all these tricks, but really, they’re controlling you. The more you play the game, the less you’re... you. And then what’s left?”
+
+I stare at him, the words settling into my mind like stones sinking to the bottom of a lake. There’s a moment where I almost believe him—almost. But a part of me can’t let go. A part of me still thinks I need the edge, the tactics, I need their support, their security.
+
+I force a smile, nodding.
+“Yeah, maybe you’re right.”
+
+He claps me on the shoulder. “Of course I’m right. Now go.”
+
+I turn, my heart sinking as I look toward the corridor again.
+But she’s not there anymore. The space where she stood is empty, her laughter gone. I blink, panic creeping in again.
+
+*I missed it. Again.*
+
+Jackson glances over, then back at me with a sympathetic smile.
+“You'll get another chance; I know it.”
+
+Oh, Jackson, if you knew how many chances I had.
+What do I do now? I'm so lost.`, 
+        [],
+        "Press ENTER to rewind... or... what if you just stop?"
+    ],
+    'the_end': [
+        `I stand frozen in the corridor, my eyes still fixed on the empty space where she stood just moments ago. The sound of the school buzzing around me fades into the background, and all I can hear is the echo of my own heartbeat.
+I lost her again.
+For a moment, I feel that familiar pit of frustration, the one that always comes after another failed attempt, another reset.
+
+I’ve been so focused on winning her, on playing every move perfectly, like she’s some kind of puzzle to be solved. But with every reset, every manipulation, I’ve felt myself slipping further away—from her, from reality, from myself.
+I glance at the corridor again, the empty space where she was.
+This wasn’t the way to find her. It never was.
+
+Jackson is right, I’ll get another chance, but not like this.
+I shake my head, breathing deeply as a sense of clarity washes over me. Not like this, I think again.
+I’m not going to force another reset, not going to twist reality just to try some new trick.
+If there’s going to be a chance, it’ll be real. It has to be real. No more lies. No more tricks. No more games.
+
+I turn to leave, but before I can take a step, I feel a hand on my shoulder. It’s Jackson.
+“You okay?”
+
+For a second, I almost laugh. He’s been there this whole time, giving me advice I was too stubborn to hear. I look at him, this time really look at him, and I see the concern in his eyes—the kind of concern that’s genuine. The kind that comes from someone who actually cares.
+
+I nod, breathless but sure. 
+“Yeah. I’m good.”
+
+I don’t waste another second. I break into a run, bursting through the school doors and into the cool evening air. The sun is setting, casting a warm glow over everything, and there, in the distance, I see her.
+Jessica.
+
+She's walking down the street, unaware of the storm that’s been brewing inside me.
+My heart races, but this time it’s not from anxiety or fear of failure. It’s something different—hope.
+
+I keep running, closing the distance between us, my mind clear for the first time in what feels like years.
+I don’t know what I’ll say when I catch up to her, and for the first time, that doesn’t scare me. I’ll figure it out. I’ll be me—no more lines, no more tricks, no more resets. Just me.
+
+And whatever happens next... it will be real.`, 
+        [],
+        'Press ENTER to break the loop'
+    ],
 
     'reflection': () => getReflectionState(reflectionIndex)
 };

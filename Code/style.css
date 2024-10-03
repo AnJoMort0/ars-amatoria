@@ -8,7 +8,6 @@ body {
     overflow: hidden;
 }
 
-/* Pink Palette */
 .pink-palette {
     --background-color: #2f1a26;
     --accent-background-color: #472233;
@@ -18,8 +17,6 @@ body {
     background-color: var(--background-color);
     color: var(--text-color-1);
 }
-
-/* Blue Palette */
 .blue-palette {
     --background-color: #203f4f;
     --accent-background-color: #337b7b;
@@ -29,6 +26,16 @@ body {
     background-color: var(--background-color);
     color: var(--text-color-1);
 }
+.calm-palette {
+    --background-color: #4a5333; 
+    --accent-background-color: #6c8365; 
+    --text-color-1: #e6e8e6; 
+    --text-color-2: #c9cfc6; 
+    --contrast-color: #82988b;
+    background-color: var(--background-color);
+    color: var(--text-color-1);
+}
+
 
 .main-content {
     display: flex;
@@ -431,6 +438,20 @@ body {
     .title-button:hover {
         filter: brightness(0.7);
     }
+
+/* Fading to black --> chatGPT generated */
+#fadeScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 5s ease-in-out;
+}
 
 /* lightly chatGPT assisted */
 @keyframes pulsate {
