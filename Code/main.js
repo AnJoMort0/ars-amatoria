@@ -392,26 +392,45 @@ document.addEventListener("DOMContentLoaded", () => {
         let choices = [...stateContent[1]]; // Copy the original choices
 
         // Lock certain states behind discovering other states
-        if (currentState === 'walk_on_intro' && visitedStates['look_at_corridor']) {
+        if (currentState === 'walk_on_intro'
+            && visitedStates['look_at_corridor']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_r')) {
                 storyStates[currentState][1].push(['restroom', 'w_cr_r']);
             }
         }
-        if ((currentState === 'intro' || currentState === 'look_at_floor' || currentState === 'look_at_girl' || currentState === 'look_at_corridor') && visitedStates['talk_on_intro']) {
+        if (currentState === 'walk_on_intro'
+            && (visitedStates['look_at_girl']
+            || visitedStates['stare_on_intro'])) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_friends')) {
+                storyStates[currentState][1].push(['friends', 'w_cr_friends']);
+            }
+        }
+        if ((currentState === 'intro' || currentState === 'look_at_floor' || currentState === 'look_at_girl' || currentState === 'look_at_corridor' || currentState === 'look_at_jackson')
+            && visitedStates['talk_on_intro']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'talk_again')) {
                 storyStates[currentState][1].push(['talk', 'talk_again']);
             }
         }
-        if (currentState === 'look_on_intro' && visitedStates['wait_on_intro']) {
+        if (currentState === 'look_on_intro'
+            && visitedStates['wait_on_intro']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'look_at_jackson')) {
                 storyStates[currentState][1].push(['Jackson', 'look_at_jackson']);
             }
         }
-        if (currentState === 'walk_on_intro' && visitedStates['wait_on_intro'] 
+        if (currentState === 'cr_approach'
+            && visitedStates['cr_hide']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'ex_gossip')) {
+                storyStates[currentState][1].push(['gossip', 'ex_gossip']);
+            }
+        }
+
+        if (currentState === 'walk_on_intro'
+            && visitedStates['wait_on_intro'] 
             && visitedStates['ex_stop'] 
             && visitedStates['ex_touch'] 
             && visitedStates['ex_recall'] 
-            && visitedStates['ex_compliment']) {
+            && visitedStates['ex_compliment']
+            && visitedStates['ex_gossip']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'final')) {
                 storyStates[currentState][1].push(['Jackson', 'final']);
             }
@@ -423,12 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
             storyStates['look_at_floor'][1]     = storyStates['look_at_floor'][1].filter(choice     => choice[1] !== 'talk_on_intro');
             storyStates['look_at_girl'][1]      = storyStates['look_at_girl'][1].filter(choice      => choice[1] !== 'talk_on_intro');
             storyStates['look_at_corridor'][1]  = storyStates['look_at_corridor'][1].filter(choice  => choice[1] !== 'talk_on_intro');
-        }
-        if (visitedStates['talk_again']) {
-            storyStates['intro'][1]             = storyStates['intro'][1].filter(choice             => choice[1] !== 'talk_again');
-            storyStates['look_at_floor'][1]     = storyStates['look_at_floor'][1].filter(choice     => choice[1] !== 'talk_again');
-            storyStates['look_at_girl'][1]      = storyStates['look_at_girl'][1].filter(choice      => choice[1] !== 'talk_again');
-            storyStates['look_at_corridor'][1]  = storyStates['look_at_corridor'][1].filter(choice  => choice[1] !== 'talk_again');
+            storyStates['look_at_jackson'][1]   = storyStates['look_at_jackson'][1].filter(choice   => choice[1] !== 'talk_on_intro');
         }
 
         choices = [...storyStates[currentState][1]];
@@ -569,13 +583,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const stateContent  = storyStates[currentState];
         const choices       = stateContent[1];
 
+        // Trigger easter-egg
+        if (inputValue === 'easter-egg' || inputValue === 'easter egg' || inputValue === 'easteregg') {
+            container.innerHTML = '';
+            const easterEggs    = ['ee1', 'ee2', 'ee3'];
+            const random        = Math.floor(Math.random() * easterEggs.length);
+            proceedToNextState(easterEggs[random]);
+        }
+
         // If the current state is 'final'
         if (currentState === 'final') {
-            document.body.classList.add('glitchy-transition');
-            playGlitchSound();
-            setTimeout(() => {
-                document.body.classList.remove('glitchy-transition');
-            }, 500);
+            if (!inputValue.includes('s') && !inputValue.includes('t') && !inputValue.includes('o') && !inputValue.includes('p')) {
+                playerInput.value = ''
+                document.body.classList.add('glitchy-transition');
+                playGlitchSound();
+                setTimeout(() => {
+                    document.body.classList.remove('glitchy-transition');
+                }, 500);
+            }
             if (inputValue === '') {
                 // If Enter is pressed with no input, go back to 'intro'
                 proceedToNextState('intro');

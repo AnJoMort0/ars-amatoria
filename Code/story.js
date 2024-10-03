@@ -31,6 +31,7 @@ one more time...`,
             ['look', 'look_on_intro'],
             ['walk', 'walk_on_intro'],
             ['talk', 'talk_on_intro'],
+            ['stare', 'stare_on_intro'],
         ],
         d
     ],
@@ -45,7 +46,21 @@ Still surprised I answer
 As I look back at the corridor, the girl is not there anymore. I've lost my chance...`, 
             [],
             e
-            ],
+        ],
+        'stare_on_intro': [
+            `I freeze, rooted in place in the crowded hallway, my eyes locked on her. Maybe if I just... look. Maybe that’ll show her I’m interested. Something deep down will click, right?
+I stare, trying to focus. It’s not creepy—it’s intentional. I’m showing interest, not desperation.
+She’s still laughing with her friends, oblivious to me, and the longer I stare, the weirder it feels. I glance away, then back at her, hoping for eye contact, some kind of sign. But nothing.
+But then, one of her friends catches me staring. They exchange glances, and suddenly, the entire group is whispering.
+Her laughter fades, replaced by a frown as she turns her head slightly, catching me in the act.
+There’s no spark, no connection.
+Her eyes widen in discomfort, and she quickly looks back at her friends, who are now shooting me awkward, suspicious glances.
+Oh no. That didn’t work at all.
+
+I stand there, feeling like an idiot.`, 
+            [],
+            e
+        ],
         'talk_on_intro': [
             `I stand there, frozen for a second, my heart pounding. I open my mouth, the word "talk" swirling in my head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, I mutter...
 
@@ -58,6 +73,7 @@ Great start, really.`,
                 ['wait', 'wait_on_intro'],
                 ['look', 'look_on_intro'],
                 ['walk', 'walk_on_intro'],
+                ['stare', 'stare_on_intro'],
             ],
             d
         ],
@@ -93,6 +109,7 @@ The crowd swirls past, but all I can see is her.`,
                     ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
+                    ['stare', 'stare_on_intro'],
                 ],
                 d
             ],
@@ -108,6 +125,7 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                     ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
+                    ['stare', 'stare_on_intro'],
                 ],
                 d
             ],
@@ -122,6 +140,7 @@ Maybe if I stare hard enough, I’ll find it again.`,
                     ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
+                    ['stare', 'stare_on_intro'],
                 ],
                 d
             ],
@@ -136,6 +155,8 @@ But what does he know? That loser advice might work for him, but girls... girls 
                 [
                     ['look', 'look_on_intro'],
                     ['walk', 'walk_on_intro'],
+                    ['stare', 'stare_on_intro'],
+                    ['talk', 'talk_on_intro']
                 ],
                 d
             ],
@@ -200,6 +221,30 @@ What the hell? Isn’t that what all girls want?`,
             [],
             e
         ],
+        'w_cr_friends': [
+            `Maybe I can make her jealous. Yeah, that’s it.
+
+I approach the group, putting on what I hope is a confident smile. They’re laughing about something—no idea what, but I join in anyway.
+“Hey, you all look like you're having more fun than anyone else here, mind if I join in?”
+
+One of her friends, the one with the glasses, looks at me with mild curiosity.
+“We were just talking about the exam.”
+
+I nod, trying to sound interested.
+“Yeah, brutal, right? What do you girls plan to do know that it's all over?”
+
+The conversation drags on, but I can feel it—nothing’s working. They’re talking to me, but it’s polite, distant.
+I glance over at her, waiting for a reaction, for anything that shows she’s noticed me. But she doesn’t. In fact, she doesn’t even seem to care.
+She barely glances in my direction, and then, just like that, she turns and walks away.
+No jealousy. No interest. Just... nothing.
+I’m left standing there, pretending to laugh at a joke I didn’t hear, surrounded by people who don’t care. 
+My stomach twists.
+This was supposed to work.
+
+It always works... doesn’t it?`, 
+            [],
+            e
+        ],
         'w_cr_r': [
             `I’m making my way down the corridor, my heart thudding in my chest.
 The restroom is right there, just a few steps from her, giving me an excuse to get close.
@@ -213,6 +258,8 @@ This is it.`,
                 ['chatter', 'cr_chatter'], 
                 ['compliment', 'cr_compliment'], 
                 ['approach', 'cr_approach'],
+                ['confess', 'cr_confess'],
+                ['hide', 'cr_hide'],
             ],
             d
         ],
@@ -250,6 +297,63 @@ I swallow, my throat tight. My hand clenches into a fist at my side. I try to sm
 What the hell? That was supposed to work.
 
 My stomach churns as I turn away. The corridor feels colder, the laughter harsher. I had followed the advice, played the game. But here I am, empty-handed. Again.`, 
+                [],
+                e
+            ],
+            'cr_confess': [
+                `I close the distance quickly, my pulse racing. Before I can stop myself, the words tumble out, awkward and sudden.
+“Hey, um, I know we haven’t really talked much... or at all, but I’ve been, uh, noticing you for a while, and... well, I think I might love you.”
+
+She blinks, caught completely off guard.
+Her friends stop chatting, all of them glancing over at me.
+There’s a moment of stunned silence before she smiles—kind, but confused.
+“Oh... uh, wow. That’s... really sweet, but I don’t even know you.”
+
+I feel a rush of panic. This wasn’t supposed to go like this.
+“No, no, I get that, but... I’ve just been watching you from afar, you know? I think you’re amazing, and I can tell we’d be great together. You just... haven’t had a chance to see it yet.”
+
+She shifts uncomfortably, glancing toward her friends for support.
+“I... appreciate the compliment, really, but I don’t think that’s how this works. I’m sorry, but I’m not interested.”
+
+My heart sinks, but I push forward, my voice growing more desperate.
+“Wait, no, just hear me out! We don’t need to know each other right away. We can get to know each other! I can show you who I really am, and you’ll see—everything I’m saying is true!”
+
+Her smile falters, replaced by a look of growing unease. She takes a small step back, shaking her head softly.
+“I don’t think that’s a good idea. I’m flattered, but... this is a little too much, okay? Please... stop.”
+
+I reach out, my voice trembling now.
+“But you haven’t given us a chance! You haven’t even—”
+
+She cuts me off, her tone firm but still polite.
+“I’ve said no. Please... just let it go.”
+
+I oblige.`,
+                [],
+                e
+            ],
+            'cr_hide': [
+                `I walk toward her, my heart racing, but as I get closer, the panic creeps in. My mind spins. What if I mess it up? Suddenly, I freeze. I can't do it. Not like this.
+Without thinking, I veer off, ducking into the restroom, my breath coming in short bursts.
+I lean against the wall, wiping my sweaty palms on my jeans.
+I have no balls.
+As I stand there, silently cursing myself, I overhear a conversation coming from one of the stalls. Two voices, speaking just loud enough for me to catch.
+“Did you hear about Paul Naso? Idiot went and cheated on his girlfriend.”
+
+“No way!”
+
+“Get this, he read some garbage about how he’s in his prime, that he should enjoy his body while it lasts. His girlfriend’s heartbroken, and the guy’s still acting like he did the right thing. Unbelievable.”
+
+“Ugh, those guys are a joke. It’s like they’re trying to ruin their own lives.”
+
+I stay quiet, listening to the conversation die down.
+My heart sinks as the weight of the situation hits me.
+Is that what I’m doing? Am I just another Paul Naso, following some dumb advice to try and get what I want?
+Nah.
+
+I push open the restroom door, stepping back into the corridor, but she’s gone.
+I missed it. Again.
+
+Time to reset.`,
                 [],
                 e
             ],
@@ -396,6 +500,41 @@ I played the game—pushing, pulling—but instead of making her want more, I ju
                     [],
                     e
                 ],
+                'ex_gossip': [
+                    `“You know, I’ve been thinking a lot about relationships lately. How some people just don’t appreciate what they have. It’s sad, really.”
+
+Jessica glances at me, curious but cautious.
+“Yeah?”
+
+“Yeah, like, take this guy Paul Naso for example. I heard he cheated on his girlfriend because some website told him he’s ‘in his prime’ or whatever. Can you believe that? I would never do that. I don’t get how some guys can be so heartless.”
+
+She gives a polite nod but doesn’t say much, so I push on.
+
+“Honestly, I think it’s rare these days to find a partner who’s actually kind, you know? Someone who really cares about the person they’re with, who’s loyal, who’s willing to put in the effort. Someone like... well, me.”
+
+I glance at her, hoping for some kind of reaction.
+“I mean, I don’t want to sound cocky or anything, but I’m not like those others out there.”
+
+Jessica chuckles awkwardly, trying to stay polite.
+“I guess it’s good to be confident in yourself.”
+
+“Exactly! It’s just that, you know, if you were with me, you’d never have to worry about being cheated on or lied to. I’d treat you like you deserve. Like, I’ve seen some of the people around here... trust me, you’d be making a mistake with anyone but me.”
+
+Jeessica’s polite smile fades completely and she glances away, clearly uncomfortable.
+“That’s... uh, good to know.”
+
+I feel a pang of frustration, but I try to keep my tone light.
+“You deserve the best, right? And I can give you that. You wouldn’t regret it.”
+
+Jessica takes a small step away, her body language shifting.
+“I think... maybe we should just keep things casual, you know? It’s good to talk, but I’m not really looking for anything like that right now. Well... I need to go.”
+
+I stand there, my heart sinking as I realize I’ve pushed too hard.
+
+How could she not see I’m exactly what she needs?`, 
+                    [],
+                    e
+                ],
     'final': [
         `I’ve tried almost everything.
 My chest feels tight as I weave through the crowd, my heart pounding in frustration. Nothing’s working.
@@ -446,12 +585,13 @@ I stare at him, the words settling into my mind like stones sinking to the botto
 I force a smile, nodding.
 “Yeah, maybe you’re right.”
 
-He claps me on the shoulder. “Of course I’m right. Now go.”
+He claps me on the shoulder.
+“Of course I’m right. Now go.”
 
 I turn, my heart sinking as I look toward the corridor again.
 But she’s not there anymore. The space where she stood is empty, her laughter gone. I blink, panic creeping in again.
 
-*I missed it. Again.*
+I missed it. Again.
 
 Jackson glances over, then back at me with a sympathetic smile.
 “You'll get another chance; I know it.”
@@ -495,6 +635,49 @@ I don’t know what I’ll say when I catch up to her, and for the first time, t
 And whatever happens next... it will be real.`, 
         [],
         'Press ENTER to break the loop'
+    ],
+
+    'ee1': [
+        `I walk up to her. Jessica’s there at her locker, pulling out a couple of books with that usual look on her face—uninterested, like I don’t even exist. No big deal. I lean against the lockers nearby, cross my arms and legs, and without even glancing at her, I throw out a casual:
+“Hey.” -Pistol finger-. “Jessica, right?”
+
+She blinks, surprised, like I caught her off guard or something.
+“Yeah, hi, sorry, I thought you knew my name because we’ve interacted so many times, but maybe I was just being stupid,”
+she stammers, twirling a strand of hair around her finger.
+“Sorry, I’m Jessica. That’s me.”
+
+She lets out this awkward chuckle.
+I don’t even really listen to all of it. Over her voice, I just respond,
+“Cool, see you around.”
+
+As I turn and walk away, I hear her stumbling over her words,
+“Yes, I hope I see you... around.”
+
+I stop, just for a second, glance over my shoulder, and with the faintest of smirks, I throw back,
+“Guess we’ll see,” before I keep walking, not even waiting for her reaction.
+
+I can hear it though—the moment I’m out of sight, she’s basically screaming, like a lovesick teenager.
+
+Nailed it.
+
+Now let's jump into a vat of acid.`,
+        [],
+        e
+    ],
+    'ee2': [
+        `The gnocchi pulls out all those happy holiday Rome memories. It almost feels sunny. So you smile.
+ 
+Clare is at your shoulder with a pack of biscuits and some chocolate, "Why the big smile?" She sees the brunette at the end of aisle, "Oh I see..." and slaps your wrist playfully. You roll your eyes, "I was remembering Rome actually." She rolls her eyes, "Really, you're such an old romantic..."
+
+Wait? Where am I? What was this text? Some sort of Golden Ending from another reality?`,
+        [],
+        e
+    ],
+    'ee3': [
+        `Maybe her rejecting me is a Nexus Event or something.
+        I'm just waiting for The Watcher or the TVA to confirm it.`,
+        [],
+        e
     ],
 
     'reflection': () => getReflectionState(reflectionIndex)

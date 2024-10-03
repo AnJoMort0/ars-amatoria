@@ -12,7 +12,7 @@ Ars Amatoria is a dark, satirical exploration of manipulation in dating advice c
 You begin just outside your final exam, free from the weight of textbooks and stress, and there she is—the girl you've barely spoken to all semester but can't stop thinking about. This is your chance, one more time... but what will you do with it?
 
 ## Project Information:
-**This project was developped for the Summerschool "Transposition Ludique" and the class "Développement de Jeu 2D" under d'Isaac Pante (SLI, Lettres, UNIL, Lausanne, CH).**
+**This project was developped for the Summerschool "Transposition Ludique" under Yannick Rochat, David Javet and Isaac Pante and the class "Développement de Jeu 2D" under d'Isaac Pante (SLI, Lettres, UNIL, Lausanne, CH).**
 
 ### Platforms:
 - **Browser-based game**, playable with keyboard input on itch.io.
