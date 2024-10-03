@@ -401,6 +401,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 storyStates[currentState][1].push(['outside', 'w_cr_outside']);
             }
         }
+        if (currentState === 'w_cr_r'
+            && visitedStates['cr_approach']
+            && visitedStates['cr_confess']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'cr_confess_alt')) {
+                storyStates[currentState][1].push(['confess', 'cr_confess_alt']);
+            }
+        }
         if ((currentState === 'intro' || currentState === 'look_at_floor' || currentState === 'look_at_girl' || currentState === 'look_at_corridor' || currentState === 'look_at_jackson')
             && visitedStates['talk_on_intro']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'talk_again')) {
@@ -439,6 +446,9 @@ document.addEventListener("DOMContentLoaded", () => {
             storyStates['look_at_girl'][1]      = storyStates['look_at_girl'][1].filter(choice      => choice[1] !== 'talk_on_intro');
             storyStates['look_at_corridor'][1]  = storyStates['look_at_corridor'][1].filter(choice  => choice[1] !== 'talk_on_intro');
             storyStates['look_at_jackson'][1]   = storyStates['look_at_jackson'][1].filter(choice   => choice[1] !== 'talk_on_intro');
+        }
+        if (visitedStates['cr_confess'] && visitedStates['cr_approach']) {
+            storyStates['w_cr_r'][1]            = storyStates['w_cr_r'][1].filter(choice            => choice[1] !== 'cr_confess');
         }
 
         choices = [...storyStates[currentState][1]];

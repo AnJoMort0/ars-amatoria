@@ -381,6 +381,43 @@ I oblige.`,
                 [],
                 e
             ],
+            'cr_confess_alt': [
+                `I close the distance quickly, my pulse racing. Before I can stop myself, the words tumble out, awkward and sudden.
+“Hey, um, I know we haven’t really talked much... or at all, but I’ve been, uh, noticing you for a while, Jessica, and... well, I think I might love you.”
+
+She freezes, blinking in surprise, and her friends immediately stop talking, all of them glancing at me in confusion. There’s an awkward silence..
+
+“Wait... how do you know my name? Who are you?”
+
+I feel a cold sweat break out. I didn’t mean to say her name. My heart starts pounding even harder.
+“Oh, uh... it just slipped out. I... I think I overheard it somewhere.”
+
+Her expression hardens, and her friends exchange uncomfortable glances.
+“Okay... but we’ve never spoken before, and you just said you love me?”
+
+“No, no, it’s not like that. I mean, I’ve just been... watching you, not in a creepy way!”
+
+“That’s... weird.”
+
+“No, wait, Jessica, you don’t understand! This isn’t the first time I’ve tried this. I’ve... I’ve been doing this over and over. It’s like a loop—I can reset time! That’s why I know your name, and that’s why I know we’re perfect for each other.”
+
+Her eyes widen further, and now she’s visibly uncomfortable. Her friends step in closer.
+“You... reset time? That’s... insane. You need to stop. This is way too much. I don’t know you, and this is just... please, leave me alone.”
+
+But I can’t stop. My voice shakes as I reach out desperately.
+“No, you don’t get it! I’ve tried everything to make this work, Jessica! I’ve seen you walk away a dozen times, and every time I reset, I try to get it right, but you never—”
+
+She cuts me off, her tone firm and full of alarm now.
+“Stop saying my name! This is crazy. Please, just leave me alone.”
+
+Her friends are already pulling her away, and I’m left standing there, watching as she disappears into the crowd.
+My heart sinks, knowing I’ve ruined it.
+Again.
+
+Reset. I have to reset.`,
+                [],
+                e
+            ],
             'cr_hide': [
                 `I walk toward her, my heart racing, but as I get closer, the panic creeps in. My mind spins. What if I mess it up? Suddenly, I freeze. I can't do it. Not like this.
 Without thinking, I veer off, ducking into the restroom, my breath coming in short bursts.
