@@ -540,8 +540,12 @@ document.addEventListener("DOMContentLoaded", () => {
             // Update the choice element's display
             choiceElements[i].textContent = displayWord;
     
-            // Set the cursor
-            choiceElements[i].style.cursor = visitedStates[nextState] ? 'pointer' : 'not-allowed';
+            // Set the cursor based on input matching the full choiceWord
+            if (inputValue === choiceWord.toLowerCase() || visitedStates[nextState]) {
+                choiceElements[i].style.cursor = 'pointer';
+            } else {
+                choiceElements[i].style.cursor = 'not-allowed';
+            }
         });
     }    
 
