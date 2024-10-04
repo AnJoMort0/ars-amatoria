@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ars Amatoria</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="fadeScreen"></div>
+    
+    <!-- Title Screen -->
+    <div id="titleScreen" class="title-screen">
+        <img src="images/bg.png" alt="Background" class="title-bg">
+        <img src="images/logo.png" alt="Game Logo" id="titleLogo" class="title-logo">
+        <img src="images/title.png" alt="Game Title" id="titleTitle" class="title-title">
+        <div class="title-buttons">
+            <button id="continueButton" class="title-button">Continue</button>
+            <button id="newGameButton" class="title-button">New Game</button>
+            <button id="rewindHistoryButton" class="title-button">Rewind History</button>
+        </div>
+    </div>
+
+    <!-- Rewind History Content -->
+    <div id="historyContainer"></div>
+    
+
+    <!-- Main Game Content -->
+    <div id="mainContent" class="main-content" style="display: none;">
+        <div id="controlPanel" class="control-panel">
+            <div id="animationControl" class="animation-control">
+                <div class="control-label">Animation Speed</div>
+                <div class="control-selector">
+                    <button id="prevSpeed" class="control-button">&lt;</button>
+                    <span id="currentSpeed">Normal</span>
+                    <button id="nextSpeed" class="control-button">&gt;</button>
+                </div>
+                <div id="speedHint" class="speed-hint"></div>
+            </div>
+            <div id="musicControl" class="music-control">
+                <div class="control-label">Music</div>
+                <div class="control-selector">
+                    <button id="musicToggle" class="control-button">On</button>
+                </div>
+            </div>
+            <div id="soundControl" class="sound-control">
+                <div class="control-label">Sound Effects</div>
+                <div class="control-selector">
+                    <button id="soundToggle" class="control-button">On</button>
+                </div>
+            </div>
+            <div id="autoScrollControl" class="auto-scroll-control">
+                <div class="control-label">Auto-Scroll</div>
+                <div class="control-selector">
+                    <button id="autoScrollToggle" class="control-button">On</button>
+                </div>
+            </div>
+            <div id="flashingImagesControl" class="flashing-images-control">
+                <div class="control-label">Flashing Effects</div>
+                <div class="control-selector">
+                    <button id="flashingToggle" class="control-button">On</button>
+                </div>
+            </div>
+            <div id="betterReadabilityControl" class="better-readability-control">
+                <div class="control-label">Better Readability</div>
+                <div class="control-selector">
+                    <button id="betterReadabilityToggle" class="control-button">Off</button>
+                </div>
+            </div>            
+        </div>        
+        <div id="container" class="container"></div>
+    </div>    
+
+    <!-- Input Bar -->
+    <div id="inputBar" class="input-bar">
+        <div id="inputBarContainer" class="input-bar-container">
+            <div id="choicesWrapper" class="choices-wrapper"></div>
+            <input type="text" name="playerInput" id="playerInput" class="player-input" autocomplete="off">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="story.js"></script>
+    <script type="module" src="special_events.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

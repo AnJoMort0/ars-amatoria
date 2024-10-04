@@ -402,17 +402,17 @@ body {
     }
     .title-buttons {
         position: absolute;
-        bottom: 10cap;
+        bottom: 5cap;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
         z-index: 1;
     }
     .title-button {
         width: 400px;
-        height: 90px;
+        height: 75px;
         padding: 15px 30px;
         font-size: 2em;
         font-family: 'Playfair Display', serif;
@@ -598,6 +598,83 @@ body {
 .glitchy-transition {
     animation: glitchy-effect 1s ease-in-out forwards;
 }
+
+/* History Screen Styles */
+.rewind-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+    .rewind-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 10vh;
+        padding: 0px 0px;
+        background-color: var(--accent-background-color);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.7);
+        text-align: center;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+        .main-menu-button {
+            padding: 10px 20px;
+            background-color: var(--accent-background-color);
+            border: 2px solid var(--text-color-1);
+            color: var(--text-color-1);
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+            .main-menu-button:hover {
+                filter: brightness(0.7);
+            }
+    .rewind-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px; /* Space between boxes */
+        position: fixed;
+        bottom: 0;
+        height: 85vh;
+        overflow-y: auto;
+        padding: 20px;
+        scrollbar-color: var(--background-color) var(--accent-background-color);
+        scrollbar-gutter: stable;
+    }
+        .history-item {
+            background-color: var(--accent-background-color);
+            border: 2px solid var(--text-color-1);
+            padding: 10px 10px 0px 10px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--text-color-1);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+            .history-item.locked {
+                opacity: 0.5;
+                filter: grayscale(0.5)
+                brightness(1.3);
+            }
+            .history-item strong {
+                font-size: 1.5em;
+                margin-bottom: 0px;
+            }
+            .history-item em {
+                font-size: 1.2em;
+                margin-bottom: 0px;
+            }
+            .history-item p {
+                font-size: 1em;
+            }
 
 /* Media query for devices with a screen width up to 960px fully chatGPT generated*/
 @media only screen and (max-width: 960px) {

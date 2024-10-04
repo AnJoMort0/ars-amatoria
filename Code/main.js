@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const logo              = document.getElementById('titleLogo');
     const continueButton    = document.getElementById('continueButton');
     const newGameButton     = document.getElementById('newGameButton');
+    const historyButton     = document.getElementById('rewindHistoryButton');
+
+    // Rewind History Elements
+    const rewindContainer      = document.getElementById('rewindContent');
+    const rewindList           = document.getElementById('rewindList');
+    const mainMenuButton       = document.getElementById('mainMenuButton');
 
     //Game Elements
     const mainContent   = document.getElementById('mainContent');
@@ -56,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     allButtons.forEach(button => {
         button.addEventListener('click', playClickSound);
     });
+
+    mainMenuButton.addEventListener('click', () => {playClickSound(); window.location.reload()});
 
     // Colour palette control
     let isPinkPalette       = true; // Start with the rose palette
@@ -151,11 +159,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Check if there are visitedStates
-    let visitedStates = {};
+    let visitedStates   = {};
+    let unlockedStates  = {};
 
     // Load visitedStates from localStorage if available
     if (localStorage.getItem('visitedStates')) {
         visitedStates = JSON.parse(localStorage.getItem('visitedStates'));
+    }
+    if (localStorage.getItem('unlockedStates')) {
+        unlockedStates = JSON.parse(localStorage.getItem('unlockedStates'));
     }
 
     // Disable the "Continue" button if no states have been visited yet
@@ -192,6 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
         hideTitleScreen(false); // Pass false to indicate new game
     });
 
+    historyButton.addEventListener('click', () => {
+        hideTitleScreen(false, true);
+    });
+
     updateAnimationSpeedDisplay();
 
     // FUNCTIONS
@@ -204,21 +220,74 @@ document.addEventListener("DOMContentLoaded", () => {
         reflectionIndex = 0;
     }
 
-    function hideTitleScreen(isContinuing) {
+    function hideTitleScreen(isContinuing, isHistory = false) {
         continueButton.disabled     = true;
         newGameButton.disabled      = true;
+        historyButton.disabled      = true;
         titleScreen.classList.add('glitchy-transition');
         titleScreen.classList.add('glitch-active');
         playGlitchSound();
+
         setTimeout(() => {
             titleScreen.classList.remove('glitchy-transition');
             titleScreen.classList.remove('glitch-active');
             
             titleScreen.style.display = 'none';
-            mainContent.style.display = 'flex';
     
-            startGame(isContinuing);
+            // If the user wants to see the Rewind History
+            if (isHistory) {
+                rewindContainer.style.display = 'grid';
+                showRewindHistory();
+            } else {
+                mainContent.style.display = 'flex';
+                startGame(isContinuing);
+            }
         }, 1000);
+    }
+    function showRewindHistory() {
+        rewindList.innerHTML  = ''; // Clear the history view
+
+        Object.keys(storyStates).forEach((state) => {
+            const stateContent = storyStates[state];
+
+            // Check if the state has the history format
+            if (stateContent.length > 3) {
+                const [title, action, description] = stateContent[3];
+                let actionDisplay = action;
+                let descriptionDisplay = description;
+    
+                // Censor if state hasn't been visited
+                const isLocked = !unlockedStates[state];
+                if (isLocked) {
+                    actionDisplay       = '-'.repeat(action.length);
+                    descriptionDisplay  = '-'.repeat(description.length);
+                }
+    
+                // Create a history item for each path
+                const historyItem = document.createElement('div');
+                historyItem.classList.add('history-item');
+                
+                if (isLocked) {
+                    historyItem.classList.add('locked');
+                }
+    
+                historyItem.innerHTML = `
+                    <strong>${title}</strong>
+                    <em>${actionDisplay}</em>
+                    <p>${descriptionDisplay}</p>
+                `;
+    
+                // Special colors for easter eggs and "the_end"
+                if (state === 'the_end') {
+                    historyItem.style.color = 'lime';
+                } else if (title.toLowerCase().includes('easter')) {
+                    historyItem.style.color = 'gold';
+                }
+
+                rewindList.appendChild(historyItem);
+            }
+        });
+
     }
     
     function startGame(isContinuing) {
@@ -563,6 +632,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (!visitedStates[nextState]) {
                         visitedStates[nextState] = true;
                         localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
+                    }
+                    if (!unlockedStates[nextState]) {
+                        unlockedStates[nextState] = true;
+                        localStorage.setItem('unlockedStates', JSON.stringify(unlockedStates));
                     }
                     proceedToNextState(nextState);
                 }

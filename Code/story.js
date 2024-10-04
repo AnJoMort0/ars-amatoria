@@ -14,7 +14,12 @@ const l = "Look at what?";
         ['v2', 'tod2'], 
         ['v3', 'tod3'],
     ],
-    d
+    d,
+    [
+        `title_for_history`,
+        `action`,
+        `description`,
+    ],
 ],
 */
 
@@ -45,7 +50,12 @@ Still surprised I answer
 
 As I look back at the corridor, the girl is not there anymore. I've lost my chance...`, 
             [],
-            e
+            e,
+            [
+                `It's Jackson time`,
+                `Wait`,
+                `You hesitate, and by the time you stop talking to Jackson, the chance is gone.`,
+            ],
         ],
         'stare_on_intro': [
             `I freeze, rooted in place in the crowded hallway, my eyes locked on her. Maybe if I just... look. Maybe that’ll show her I’m interested. Something deep down will click, right?
@@ -59,7 +69,12 @@ Oh no. That didn’t work at all.
 
 I stand there, feeling like an idiot.`, 
             [],
-            e
+            e,
+            [
+                `Creepy Gaze`,
+                `Stare`,
+                `You try to show interest by staring, but it creeps her out.`,
+            ],
         ],
         'talk_on_intro': [
             `I stand there, frozen for a second, my heart pounding. I open my mouth, the word "talk" swirling in my head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, I mutter...
@@ -75,7 +90,12 @@ Great start, really.`,
                 ['walk', 'walk_on_intro'],
                 ['stare', 'stare_on_intro'],
             ],
-            d
+            d,
+            [
+                `Awkward Monologue`,
+                `Talk`,
+                `You attempt to talk, but end up muttering awkwardly to yourself.`,
+            ],
         ],
         'talk_again': [
             `"Talk, it's not that hard... I'm talking to myself again, am I not? Nice."
@@ -90,7 +110,12 @@ Great.`,
                 ['walk', 'walk_on_intro'],
                 ['stare', 'stare_on_intro'],
             ],
-            d
+            d,
+            [
+                `Public Weirdo`,
+                `Talk...again`,
+                `You try again, but someone overhears and calls you out as a weirdo.`,
+            ],
         ],
         'look_on_intro': [
             `I look at the...`, 
@@ -99,7 +124,7 @@ Great.`,
                 ['girl', 'look_at_girl'],
                 ['floor', 'look_at_floor'],
             ],
-            l
+            l,
         ],
             'look_at_corridor': [
                 `The corridor is bustling with students, backpacks slung over their shoulders as they chatter about the final exam.
@@ -112,7 +137,12 @@ The crowd swirls past, but all I can see is her.`,
                     ['talk', 'talk_on_intro'],
                     ['stare', 'stare_on_intro'],
                 ],
-                d
+                d,
+                [
+                    `Restroom Close Call`,
+                    `Look at the corridor`,
+                    `You scan the corridor, noticing the restroom near Jessica and her friends.`,
+                ],
             ],
             'look_at_girl': [
                 `She’s standing there, surrounded by her friends, but all I can focus on is her.
@@ -128,7 +158,12 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                     ['talk', 'talk_on_intro'],
                     ['stare', 'stare_on_intro'],
                 ],
-                d
+                d,
+                [
+                    `Unreachable Dream`,
+                    `Look at the girl`,
+                    `You focus entirely on Jessica, thinking about how much space she occupies in your thoughts.`,
+                ],
             ],
             'look_at_floor': [
                 `The tiles stretch out in front of me, an endless sea of scuffed linoleum, each one a tiny, off-white rectangle of disappointment.
@@ -143,7 +178,12 @@ Maybe if I stare hard enough, I’ll find it again.`,
                     ['talk', 'talk_on_intro'],
                     ['stare', 'stare_on_intro'],
                 ],
-                d
+                d,
+                [
+                    `Judgmental Tiles`,
+                    `Look at the floor`,
+                    `You stare at the floor, feeling like the tiles are mocking your lack of confidence.`,
+                ],
             ],
             'look_at_jackson': [
                 `I glance over and catch Jackson’s eye. He flashes me a grin. I smirk back, but then he notices where my gaze drifts—to her.
@@ -159,7 +199,12 @@ But what does he know? That loser advice might work for him, but girls... girls 
                     ['stare', 'stare_on_intro'],
                     ['talk', 'talk_on_intro']
                 ],
-                d
+                d,
+                [
+                    `Unwanted Encouragement`,
+                    `Look at Jackson`,
+                    `Jackson catches your eye, smiles, and silently encourages you to talk to her—"just go for it."`,
+                ],
             ],
     'walk_on_intro': [
         `I walk towards...`, 
@@ -167,7 +212,7 @@ But what does he know? That loser advice might work for him, but girls... girls 
             ['girl', 'w_cr_g'],
             ['corridor', 'w_cr_c'],
         ],
-        w
+        w,
     ],
         'w_cr_g': [
             `She’s still there, talking with a group of her friends, her laughter cutting through the noise. I catch my breath, forcing myself to stay calm. I know what I have to do this time.
@@ -186,7 +231,12 @@ I turn to leave, feeling their eyes on my back, my fists clenching again.
 
 I did everything right. They’re the ones holding her back. She’s supposed to want this.`, 
             [],
-            e
+            e,
+            [
+                `Denied by Friends`,
+                `Walk to the girl - Isolation Tactic`,
+                `You try to steal Jessica away from her friends, but they shut you down, leaving you frustrated.`,
+            ],
         ],
         'w_cr_c': [
             `I start walking, following the river of students that are leaving the classroom.
@@ -220,7 +270,12 @@ Without waiting for an answer, she shakes her head and walks away. I’m left st
 
 What the hell? Isn’t that what all girls want?`, 
             [],
-            e
+            e,
+            [
+                `Big Talk`,
+                `Walk to the corridor - Peacocking`,
+                `You loudly brag about business on the phone, trying to impress her, but she rolls her eyes and walks away.`,
+            ],
         ],
         'w_cr_friends': [
             `Maybe I can make her jealous. Yeah, that’s it.
@@ -244,7 +299,12 @@ This was supposed to work.
 
 It always works... doesn’t it?`, 
             [],
-            e
+            e,
+            [
+                `Ignored Flirtation`,
+                `Walk to the friends - Jealousy Play`,
+                `You try to flirt with Jessica’s friends to make her jealous, but she leaves without even noticing.`,
+            ],
         ],
         'w_cr_outside': [
             `I step outside the school, the cool evening breeze hitting my face.
@@ -293,7 +353,12 @@ I stand there, watching her disappear down the path, my heart sinking.
 
 I blew it. Again.`, 
             [],
-            e
+            e,
+            [
+                `Creepy Pursuit`,
+                `Walk outside - Stalking`,
+                `You wait for Jessica to leave, follow her, and try to talk, but she’s creeped out and walks away.`,
+            ],
         ],
         'w_cr_r': [
             `I’m making my way down the corridor, my heart thudding in my chest.
@@ -311,7 +376,12 @@ This is it.`,
                 ['confess', 'cr_confess'],
                 ['hide', 'cr_hide'],
             ],
-            d
+            d,
+            [
+                `Heart-Pounding Moment`,
+                `Walk to the restroom`,
+                `You prepare yourself as Jessica moves slightly from her group, and you see an opening to approach her.`,
+            ],
         ],
             'cr_chatter': [
                 `I see her, just ahead, focused on her phone. My pulse quickens as I walk towards her, rehearsing the line in my head.
@@ -332,7 +402,12 @@ I stand there, my stomach sinking. The casual exit I’d planned falls apart, an
 
 What went wrong?`, 
                 [],
-                e
+                e,
+                [
+                    `Pretend Urgency`,
+                    `Chatter - False Time Constraint`,
+                    `You pretend you’re in a rush to impress Jessica, but she brushes you off with a dismissive comment, not taking your false nonchalance seriously.`,
+                ],
             ],
             'cr_compliment': [
                 `“You know, you’d be pretty cute if you didn’t always look so tired.”
@@ -348,7 +423,12 @@ What the hell? That was supposed to work.
 
 My stomach churns as I turn away. The corridor feels colder, the laughter harsher. I had followed the advice, played the game. But here I am, empty-handed. Again.`, 
                 [],
-                e
+                e,
+                [
+                    `Backhanded Compliment`,
+                    `Compliment - Negging`,
+                    `You try to "neg" the girl, offering a backhanded compliment, but it only makes her annoyed and distances her even more.`,
+                ],
             ],
             'cr_confess': [
                 `I close the distance quickly, my pulse racing. Before I can stop myself, the words tumble out, awkward and sudden.
@@ -379,7 +459,12 @@ She cuts me off, her tone firm but still polite.
 
 I oblige.`,
                 [],
-                e
+                e,
+                [
+                    `Desperate Declaration`,
+                    `Confess - Insist`,
+                    `You blurt out a sudden confession of love, but it’s pushy and catches the girl off guard, leading to her rejection.`,
+                ],
             ],
             'cr_confess_alt': [
                 `I close the distance quickly, my pulse racing. Before I can stop myself, the words tumble out, awkward and sudden.
@@ -416,7 +501,12 @@ Again.
 
 Reset. I have to reset.`,
                 [],
-                e
+                e,
+                [
+                    `Unwanted Familiarity`,
+                    `Confess your power`,
+                    `You accidentally say Jessica’s name during your confession, making her uncomfortable, and when you try to explain the time loops, it makes things worse—now you sound like a creep and a nutcase.`,
+                ],
             ],
             'cr_hide': [
                 `I walk toward her, my heart racing, but as I get closer, the panic creeps in. My mind spins. What if I mess it up? Suddenly, I freeze. I can't do it. Not like this.
@@ -442,7 +532,12 @@ I missed it. Again.
 
 Time to reset.`,
                 [],
-                e
+                e,
+                [
+                    `Coward’s Retreat`,
+                    `Hide in the restroom`,
+                    `After chickening out, you hide in the restroom and overhear a conversation about someone who cheated due to bad advice. When you emerge, Jessica is gone.`,
+                ],
             ],
             'cr_approach': [
                 `She’s still standing there, leaning against the wall, her attention focused on her phone. I take a breath, steady my nerves, and walk over, this time with a plan that feels... normal.
@@ -474,7 +569,12 @@ We head outside, the conversation light but comfortable, and for the first time,
                     ['recall', 'ex_recall'],
                     ['compliment', 'ex_compliment'],
                 ],
-                d
+                d,
+                [
+                    `Easy Connection`,
+                    `Approach`,
+                    `You approach Jessica with a normal conversation about the exam, and for once, everything feels natural. No games, no pressure—just a comfortable, genuine interaction.`,
+                ],
             ],
                 'ex_stop': [
                     `The streets are calm, the sun setting behind us as we make our way along the quiet path. She’s talking about the exam, the relief of it being over, but my thoughts are elsewhere. This is where I take control. Pull away just enough, let her feel the space between us, make her come to me.
@@ -502,7 +602,12 @@ Before I can finish my thought, she speeds up her pace, putting distance between
 
 It wasn’t supposed to end like this...`, 
                     [],
-                    e
+                    e,
+                    [
+                        `Mixed Signals`,
+                        `Stop - Freeze-Out`,
+                        `You ignore her after she doesn’t immediately reciprocate interest, thinking she’ll chase you for attention. She doesn't.`,
+                    ],
                 ],
                 'ex_touch': [
                     `We walk side by side, her footsteps soft against the pavement. The air outside is cool, refreshing after the stuffy hallway. She’s relaxed, smiling—everything seems to be falling into place. It feels right.
@@ -528,7 +633,12 @@ I watch as she turns and walks away, leaving me standing there, my hand still ha
 
 What the hell just happened? I was doing everything right.`, 
                     [],
-                    e
+                    e,
+                    [
+                        `Touching Boundaries`,
+                        `Touch - Kino Escalation`,
+                        `You attempt to slowly increase physical contact, but she becomes visibly uncomfortable and rejects your advances.`,
+                    ],
                 ],
                 'ex_recall': [
                     `The sun’s setting, casting long shadows on the sidewalk as we walk side by side. It’s quiet between us, but not in an uncomfortable way. She’s smiling, looking up at the sky, the cool breeze brushing her hair.
@@ -560,9 +670,14 @@ She stops walking, turning to face me fully now.
 
 Her words hit me hard, sharper than I expected. She steps away, her body language screaming frustration, and I realize too late that I pushed it too far. My heart sinks as I watch her walk away, my head spinning.
 
-Why didn’t that work?`, 
+Why didn’t that work?`,
                     [],
-                    e
+                    e,
+                    [
+                        `Jealousy Backfire`,
+                        `Recall - Jealousy play`,
+                        `You try to make Jessica jealous by mentioning other girls, but it backfires completely. Instead of drawing her in, it frustrates her, and she walks away.`,
+                    ],
                 ],
                 'ex_compliment': [
                     `We’re walking down the street, the conversation flowing easily. She’s talking about how relieved she is that the exam’s finally over, and I’m nodding along, smiling at her jokes. It feels good—like we’re on the same wavelength.
@@ -585,7 +700,12 @@ I watch her disappear into the crowd, the realization sinking in.
 
 I played the game—pushing, pulling—but instead of making her want more, I just pushed her away.`, 
                     [],
-                    e
+                    e,
+                    [
+                        `Mixed Signals`,
+                        `Compliment outside - Push-Pull Technique`,
+                        `You alternate between showing interest and disinterest, trying to keep her guessing, but she becomes frustrated and tells you to figure it out, walking away.`,
+                    ],
                 ],
                 'ex_gossip': [
                     `“You know, I’ve been thinking a lot about relationships lately. How some people just don’t appreciate what they have. It’s sad, really.”
@@ -620,7 +740,12 @@ I stand there, my heart sinking as I realize I’ve pushed too hard.
 
 How could she not see I’m exactly what she needs?`, 
                     [],
-                    e
+                    e,
+                    [
+                        `Nice Guy Syndrome`,
+                        `Gossip - Be a nice guy`,
+                        `You trash-talk Paul Naso and his girlfriend, trying to show Jessica how much better you are, but the more you talk about yourself, the more uncomfortable she becomes.`,
+                    ],
                 ],
     'final': [
         `I’ve tried almost everything.
@@ -686,7 +811,12 @@ Jackson glances over, then back at me with a sympathetic smile.
 Oh, Jackson, if you knew how many chances I had.
 What do I do now? I'm so lost.`, 
         [],
-        "Press ENTER to rewind... or... what if you just stop?"
+        "Press ENTER to rewind... or... what if you just stop?",
+        [
+            `Jackson's clutch`,
+            `Walk to Jackson`,
+            `After seeking advice from Jackson, you reflect on how nothing is working. He urges you to stop playing games, but as you turn back, Jessica is gone once again. Another missed chance—what now?`,
+        ],
     ],
     'the_end': [
         `I stand frozen in the corridor, my eyes still fixed on the empty space where she stood just moments ago. The sound of the school buzzing around me fades into the background, and all I can hear is the echo of my own heartbeat.
@@ -721,7 +851,12 @@ I don’t know what I’ll say when I catch up to her, and for the first time, t
 
 And whatever happens next... it will be real.`, 
         [],
-        'Press ENTER to break the loop'
+        'Press ENTER to break the loop',
+        [
+            `A Real Chance`,
+            `Break the loop`,
+            `You decide to stop manipulating, run after Jessica, and plan to be genuine for once, ending the time loops for good.`,
+        ],
     ],
 
     'ee1': [
@@ -749,7 +884,12 @@ Nailed it.
 
 Now let's jump into a vat of acid.`,
         [],
-        e
+        e,
+        [
+            `Easter-Egg - Acid`,
+            `Jump into a vat of acid`,
+            `Reference to Rick and Morty S04 E08, one of the inspirations for the game.`,
+        ],
     ],
     'ee2': [
         `The gnocchi pulls out all those happy holiday Rome memories. It almost feels sunny. So you smile.
@@ -758,13 +898,23 @@ Clare is at your shoulder with a pack of biscuits and some chocolate, "Why the b
 
 Wait? Where am I? What was this text? Some sort of Golden Ending from another reality?`,
         [],
-        e
+        e,
+        [
+            `Easter-Egg - Gnocchi`,
+            `Remember Clare`,
+            `Reference to Aisle, the game that served as the main inspiration for this game.`,
+        ],
     ],
     'ee3': [
         `Maybe her rejecting me is a Nexus Event or something.
         I'm just waiting for The Watcher or the TVA to confirm it.`,
         [],
-        e
+        e,
+        [
+            `Easter-Egg - Nexus Event`,
+            `Waiting for The Watcher`,
+            `Reference to What If's Evil Strange's tragedic story, a small inspiration for the mechanics of this game.`,
+        ],
     ],
 
     'reflection': () => getReflectionState(reflectionIndex)
