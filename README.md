@@ -14,9 +14,9 @@
 You begin just outside your final exam, free from the weight of textbooks and stress, and there she is—the girl you've barely spoken to all semester but can't stop thinking about. This is your chance, one more time... but what will you do with it?
 
 <p align="center">
-  <img src="images/marketing/ss1.jpg" width="30%" alt="Screenshot 1">
-  <img src="images/marketing/ss2.jpg" width="30%" alt="Screenshot 2">
-  <img src="images/marketing/ss3.jpg" width="30%" alt="Screenshot 3">
+  <img src="images/marketing/ss1.jpg" alt="Gameplay Screenshot 1">
+  <img src="images/marketing/ss2.jpg" alt="Gameplay Screenshot 2">
+  <img src="images/marketing/ss3.jpg" alt="Gameplay Screenshot 3">
 </p>
 
 ---
@@ -39,7 +39,7 @@ The game is built in **JavaScript** and uses no external libraries beyond standa
 - **Developed by:**       André *AnJoMorto* Fonseca
 - **Concept & Writing:**  André *AnJoMorto* Fonseca
 - **Graphics by:**        André *AnJoMorto* Fonseca
-- **Music by**            Darren Curtis Music
+- **Music by:**            Darren Curtis Music
 
 This project was developed within the **Summerschool "Transposition Ludique"** under **Yannick Rochat, David Javet, and Isaac Pante**, and as part of the course **"Développement de Jeu 2D"** under **Isaac Pante (SLI, Lettres, UNIL, Lausanne, CH).**  
 
