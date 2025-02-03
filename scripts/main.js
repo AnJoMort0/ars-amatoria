@@ -437,12 +437,36 @@ document.addEventListener("DOMContentLoaded", () => {
         inputBar.classList.add('show');
         playerInput.disabled = false; // Enable input field
         playerInput.focus(); // Add focus to the input field
-    }
+        
+        /*
+        //This was to make the text go down when the input bar disappears, but it was actually not that good looking and made reading more difficult
+        const container = document.querySelector('.container');
+
+        container.classList.remove('expanded');*/
+
+        setTimeout(() => {
+            if (autoScrollEnabled) {
+                container.scrollTop = container.scrollHeight + 100;
+            }
+        }, 500);
+    }    
     function hideInputBar() {
         inputBar.classList.remove('show');
         playerInput.disabled = true; // Disable input field
         playerInput.blur(); // Remove focus from the input field
-    }
+        
+        /*
+        //This was to make the text go down when the input bar disappears, but it was actually not that good looking and made reading more difficult
+        const container = document.querySelector('.container');
+        container.classList.add('expanded');
+
+        // Force reflow to immediately apply new height --> ChatGPT assisted
+        container.style.height = "100vh"; 
+        container.offsetHeight; // Forces the browser to recognize the change
+
+        // Scroll to bottom instantly when hiding input bar
+        container.scrollTop = container.scrollHeight; */
+    }    
 
     function displayChoices() { // Lightly chatGPT assisted, mostly for the localStorage saved choices
         const choicesWrapper        = document.getElementById('choicesWrapper');
