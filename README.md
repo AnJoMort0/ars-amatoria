@@ -56,4 +56,4 @@ The **developer is open about their AI usage**:
 
 Feel free to try the demo on [itch.io](https://anjomorto.itch.io/ars-amatoria).
 
-And join the conversation on [Discord](https://discord.gg/WKbWd5T8eK).
+And join the conversation on [Discord](https://discord.gg/Q2JTEVcNWM).
