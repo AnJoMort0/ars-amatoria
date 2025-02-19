@@ -38,7 +38,7 @@ one more time...`,
             ['talk', 'talk_on_intro'],
             ['stare', 'stare_on_intro'],
         ],
-        d
+        "What do you do? (start typing here)"
     ],
         'wait_on_intro': [
             `I wait for a moment, uncertain of what to do. 
