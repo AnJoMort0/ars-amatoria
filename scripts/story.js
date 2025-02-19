@@ -913,7 +913,7 @@ Wait? Where am I? What was this text? Some sort of Golden Ending from another re
         [
             `Easter-Egg - Nexus Event`,
             `Waiting for The Watcher`,
-            `Reference to What If's Evil Strange's tragedic story, a small inspiration for the mechanics of this game.`,
+            `Reference to What If's Evil Strange's tragedic story, a minor inspiration for the mechanics of this game.`,
         ],
     ],
 
