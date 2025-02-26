@@ -552,6 +552,7 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
 [[walk|walkOnIntro]]
 [[talk|talkOnIntro]]
 [[stare|stareOnIntro]]
+[[smile|smileOnLook]]
 
 
 :: lookAtJackson [Locked] {"position":"550,400","size":"100,100"}
@@ -612,6 +613,22 @@ What the hell was that? What did I just do?
 The whispers around me return. Someone laughs nervously. I catch a muttered *"What a freak"* before my ears tune everything out.
 
 I have to reset. NOW.
+
+[[Restart|intro]]
+
+
+:: smileOnLook [End] {"position":"875,600","size":"100,100"}
+I smile.  
+Not at her—just in her general direction.
+I don’t know why. I just do.  
+My face is stuck. My body frozen.  
+She never looks up.  
+She laughs at something her friend says, then walks away.  
+I’m still standing here. Still smiling.  
+
+…Gosh, that was weird.
+
+[[Restart|intro]]
 
 
 :: stareOnIntro [End] {"position":"700,600","size":"100,100"}
@@ -904,7 +921,7 @@ This is it.
 [[Confess|crConfessAlt]] unlocked after crConfess and crApproach
 
 
-:: waitOnIntro [End] {"position":"500,600","size":"100,100"}
+:: waitOnIntro [End] {"position":"525,600","size":"100,100"}
 I wait for a moment, uncertain of what to do.  
 Jackson comes from behind me, friendly punches me in the shoulder and happily asks  
 *"So how was it?"*  

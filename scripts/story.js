@@ -191,6 +191,7 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                     ['walk', 'walk_on_intro'],
                     ['talk', 'talk_on_intro'],
                     ['stare', 'stare_on_intro'],
+                    ['smile', 'smile_on_look'],
                 ],
                 d,
                 [
@@ -199,6 +200,24 @@ I’ve tried not to stare, tried to convince myself that it’s just a crush, bu
                     `You focus entirely on Jessica, thinking about how much space she occupies in your thoughts.`,
                 ],
             ],
+                'smile_on_look': [
+                    `I smile.  
+Not at her—just in her general direction.
+I don’t know why. I just do.  
+My face is stuck. My body frozen.  
+She never looks up.  
+She laughs at something her friend says, then walks away.  
+I’m still standing here. Still smiling.  
+
+…Gosh, that was weird.`, 
+                    [],
+                    e,
+                    [
+                        `Awkward Smile`,
+                        `Smile at the girl`,
+                        `You do just that. You just... kinda smile.`,
+                    ],
+                ],
             'look_at_floor': [
                 `The tiles stretch out in front of me, an endless sea of scuffed linoleum, each one a tiny, off-white rectangle of disappointment.
 I’ve spent more time staring at these floors than I care to admit, but today, they feel different—like they’re judging me.
