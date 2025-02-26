@@ -535,7 +535,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 storyStates[currentState][1].push(['gossip', 'ex_gossip']);
             }
         }
-
+        if (currentState === 'wave_on_look'
+            && visitedStates['cr_approach']
+            && visitedStates['gr_smile']
+            && visitedStates['gr_joke']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'gr_cry')) {
+                storyStates[currentState][1].push(['cry', 'gr_cry']);
+            }
+        }
         if (currentState === 'walk_on_intro'
             && visitedStates['wait_on_intro'] 
             && visitedStates['ex_stop'] 

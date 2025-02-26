@@ -316,6 +316,45 @@ Noted.`,
                         ],
                         
                     ],
+                    'gr_cry': [
+                        `The conversation flows easily.
+Light, natural. I can feel it going well. And then—she smiles.
+"I'm Jessica."
+
+Something inside me snaps.
+My breath catches. My vision blurs.
+I whisper:
+"I know."
+
+And then—I break.
+Tears well up before I can stop them. My chest tightens, words tumbling out in a mess of half-finished thoughts.
+"I—I’ve done this before. I keep trying—I don’t know what I’m doing wrong—I just—I don’t understand—"
+
+Jessica’s smile fades into something softer, confused but kind.
+“Hey, hey, it’s okay. I get it. It’s a lot.”
+
+She doesn’t know.
+She places a gentle hand on my arm, her voice careful.
+“It’s just an exam, right? You’ll be fine.”
+
+I shake my head.
+"No. No, it’s not just that. But I can’t explain. Not in a way that makes sense."
+
+The words don’t matter anymore. It’s all wrong.
+I wipe my face, forcing a shaky breath. I manage one last, broken whisper.
+
+"I'm sorry. Again."
+
+Reset.`, 
+                        [],
+                        e,
+                        [
+                            `Mental Breakdown`,
+                            `Cry`,
+                            `After so many attempts, you can't deal with it anymore, as soon as Jessica opens up to you, you break down crying.`,
+                        ],
+                        
+                    ],
                     'gr_smile': [
                         `I don’t push. I don’t try to steer the conversation anywhere.
 I just smile. Natural. It feels good, just being here, talking, laughing.
