@@ -488,21 +488,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 storyStates[currentState][1].push(['friends', 'w_cr_friends']);
             }
         }
+        if (currentState === 'look_on_intro'
+            && (visitedStates['look_at_girl']
+            || visitedStates['stare_on_intro'])) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'look_at_friends')) {
+                storyStates[currentState][1].push(['friends', 'look_at_friends']);
+            }
+        }
         if (currentState === 'walk_on_intro'
-            && visitedStates['cr_approach']) {
+            && (visitedStates['cr_approach']
+            || visitedStates['gr_smile'])) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'w_cr_outside')) {
                 storyStates[currentState][1].push(['outside', 'w_cr_outside']);
             }
         }
         if (currentState === 'w_cr_r'
-            && visitedStates['cr_approach']
+            && (visitedStates['cr_approach']
+            || visitedStates['gr_smile'])
             && visitedStates['cr_confess']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'cr_confess_alt')) {
                 storyStates[currentState][1].push(['confess', 'cr_confess_alt']);
             }
         }
         if (currentState === 'intro'
-            && visitedStates['cr_approach']) {
+            && (visitedStates['cr_approach']
+            || visitedStates['gr_smile'])) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'scream_on_intro')) {
                 storyStates[currentState][1].push(['scream', 'scream_on_intro']);
             }
@@ -546,7 +556,7 @@ document.addEventListener("DOMContentLoaded", () => {
             storyStates['look_at_corridor'][1]  = storyStates['look_at_corridor'][1].filter(choice  => choice[1] !== 'talk_on_intro');
             storyStates['look_at_jackson'][1]   = storyStates['look_at_jackson'][1].filter(choice   => choice[1] !== 'talk_on_intro');
         }
-        if (visitedStates['cr_confess'] && visitedStates['cr_approach']) {
+        if (visitedStates['cr_confess'] && (visitedStates['cr_approach'] || visitedStates['gr_smile'])) {
             storyStates['w_cr_r'][1]            = storyStates['w_cr_r'][1].filter(choice            => choice[1] !== 'cr_confess');
         }
 
