@@ -173,7 +173,7 @@ The crowd swirls past, but all I can see is her.`,
                 ],
                 d,
                 [
-                    `Restroom Close Call`,
+                    `Don't miss the details`,
                     `Look at the corridor`,
                     `You scan the corridor, noticing the restroom near Jessica and her friends.`,
                 ],
