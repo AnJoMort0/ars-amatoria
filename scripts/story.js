@@ -431,36 +431,31 @@ I did everything right. They’re the ones holding her back. She’s supposed to
             ],
         ],
         'w_cr_c': [
-            `I start walking, following the river of students that are leaving the classroom.
-It's my time to impress her.
-I pull out my phone, bring it to my ear and start talking loud enough for her to overhear.
+            `I step into the hallway, phone to my ear, voice just loud enough for her to hear.
+"Yeah, no, I told them to wire the funds directly. Just a couple hundred grand. No big deal."
 
-"Yeah, no, listen, I told them to wire the funds directly. It’s only a couple hundred grand. No big deal. I’ve got bigger investments on the way."
+I glance over. Nothing.
+"Yeah, we’ll close the deal by the end of the month."
 
-I pause, glancing over to see if she’s listening. She’s still standing there, unmoved.
+I laugh loudly, flashing a grin. She has to be listening now.
+She is. But instead of admiration, she just rolls her eyes and turns away.
+My heart skips a beat. Wait—she’s supposed to be impressed!
+I hurry to catch up.
+"Hey, did you hear that? I’ve been busy with... uh, business, you know?"
 
-"Yeah, we’ll close the deal by the end of the month." 
-
-I laugh loudly, flashing a grin, confident that it’s only a matter of time before she takes the bait.
-I glance her way again, she's actually looking at me now. Just waiting for some reaction—admiration, curiosity, anything. 
-Instead, she rolls her eyes, turning her back to me, clearly annoyed. My heart skips a beat. She’s supposed to be impressed!
-
-She starts walking away, and I rush to catch up. 
-"Hey," I call out, trying to keep my voice steady, "did you hear that? I’ve been busy with... uh, business, you know?"
-
-She barely glances at me, her voice cold. 
+She barely spares me a glance.
 "Cool."
 
-I fumble for a response. 
-"Though, I'm pretty sure I can still manage to find some time to buy you a drink."
+I scramble.
+"But I’m sure I can still make time to buy you a drink—"
 
-She stops, turning to face me, her arms crossed. 
-"What do you want with me? Leave me alone!"
+She stops, arms crossed. Her expression sharp.
+"What do you want? Leave me alone!"
 
-I blink, words caught in my throat. This wasn’t how it was supposed to go.
-Without waiting for an answer, she shakes her head and walks away. I’m left standing there, my hand still clutching the phone like a lifeline, my face burning.
+I freeze. This wasn’t supposed to happen.
+She walks away, and I’m left standing there, gripping my phone like a lifeline, my face burning.
 
-What the hell? Isn’t that what all girls want?`, 
+What the hell? Isn’t this what girls want?`, 
             [],
             e,
             [
