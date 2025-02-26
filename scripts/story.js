@@ -76,6 +76,40 @@ I stand there, feeling like an idiot.`,
                 `You try to show interest by staring, but it creeps her out.`,
             ],
         ],
+        'scream_on_intro': [
+        `"JESSICA!"
+I scream it with a grin, excitement bubbling in my chest—until I realize what I’ve just done.
+
+Shit.
+
+It seems like the corridor goes silent. Conversations halt. Dozens of heads turn, including hers. Far down the hall, Jessica freezes mid-laugh, her friends’ eyes darting between her and the guy who just screamed her name like a lunatic. 
+She doesn’t know me... yet.
+My stomach drops. I wasn’t supposed to say that. I wasn’t supposed to know that.
+I panic.
+“Wait—no, it’s not weird! I just—”
+I take a step forward, trying to close the distance.
+“Hey, Jessica, I know it sounds... weird... but we know each other... we talked...”
+
+Jessica’s expression shifts, her body tensing. She steps back.
+“Who are you?”
+She’s not curious. She’s freaked out.
+
+“It’s complicated, but I know you, I—”
+
+Her friends murmur, one of them nudging her arm. She’s looking at me like I’m dangerous. Then, without another word, she turns—and bolts. Her friends follow, throwing glances back at me as they disappear down the corridor.
+I stand there, breathless.
+What the hell was that? What did I just do?
+The whispers around me return. Someone laughs nervously. I catch a muttered "What a freak" before my ears tune everything out.
+
+I have to reset. NOW.`, 
+            [],
+            e,
+            [
+                `The Big Mistake`,
+                `Scream`,
+                `You scream Jessica's name before you were supposed to know it. What are you doing?`,
+            ],
+        ],
         'talk_on_intro': [
             `I stand there, frozen for a second, my heart pounding. I open my mouth, the word "talk" swirling in my head as if it’s the answer to everything. But instead of saying something clever, or even remotely coherent, I mutter...
 

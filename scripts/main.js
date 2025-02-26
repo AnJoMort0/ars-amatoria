@@ -501,6 +501,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 storyStates[currentState][1].push(['confess', 'cr_confess_alt']);
             }
         }
+        if (currentState === 'intro'
+            && visitedStates['cr_approach']) {
+            if (!storyStates[currentState][1].some(choice => choice[1] === 'scream_on_intro')) {
+                storyStates[currentState][1].push(['scream', 'scream_on_intro']);
+            }
+        }
         if ((currentState === 'intro' || currentState === 'look_at_floor' || currentState === 'look_at_girl' || currentState === 'look_at_corridor' || currentState === 'look_at_jackson')
             && visitedStates['talk_on_intro']) {
             if (!storyStates[currentState][1].some(choice => choice[1] === 'talk_again')) {
