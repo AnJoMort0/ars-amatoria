@@ -11,9 +11,10 @@ Ars Amatoria plan
   "tag-colors": {
     "Locked": "purple",
     "End": "red",
-    "Good-Ending": "green"
+    "Good-Ending": "green",
+    "EasterEgg": "yellow"
   },
-  "zoom": 0.6
+  "zoom": 1
 }
 
 
@@ -60,6 +61,8 @@ Just talking.
 [[Compliment|exCompliment]]
 
 [[Gossip|exGossip]] unlocked after crHide
+
+[[wait|ee3]] hidden easterEgg
 
 
 :: crChatter [End] {"position":"475,1000","size":"100,100"}
@@ -243,6 +246,61 @@ I missed it. Again.
 Time to reset.  
 
 [[Restart|intro]]
+
+
+:: ee1 [Locked EasterEgg] {"position":"300,1000","size":"100,100"}
+I walk up to her. Jessica’s there at her locker, pulling out a couple of books with that usual look on her face—uninterested, like I don’t even exist. No big deal. I lean against the lockers nearby, cross my arms and legs, and without even glancing at her, I throw out a casual:
+"Hey." -Pistol finger-. "Jessica, right?"
+
+She blinks, surprised, like I caught her off guard or something.
+"Yeah, hi, sorry, I thought you knew my name because we’ve interacted so many times, but maybe I was just being stupid,"
+she stammers, twirling a strand of hair around her finger.
+"Sorry, I’m Jessica. That’s me."
+
+She lets out this awkward chuckle.
+I don’t even really listen to all of it. Over her voice, I just respond,
+"Cool, see you around."
+
+As I turn and walk away, I hear her stumbling over her words,
+"Yes, I hope I see you... around."
+
+I stop, just for a second, glance over my shoulder, and with the faintest of smirks, I throw back,
+"Guess we’ll see," before I keep walking, not even waiting for her reaction.
+
+I can hear it though—the moment I’m out of sight, she’s basically screaming, like a lovesick teenager.
+
+Nailed it.
+
+Now let's jump into a vat of acid.
+
+[Congrats you found an easteregg, check the "Rewind History" for more information]
+
+[[Restart|intro]]
+
+
+:: ee2 [EasterEgg] {"position":"400,300","size":"100,100"}
+The gnocchi pulls out all those happy holiday Rome memories. It almost feels sunny. So you smile.
+ 
+Clare is at your shoulder with a pack of biscuits and some chocolate, "Why the big smile?" She sees the brunette at the end of aisle, "Oh I see..." and slaps your wrist playfully. You roll your eyes, "I was remembering Rome actually." She rolls her eyes, "Really, you're such an old romantic..."
+
+---
+"Wait? Where am I? What was this text? Some sort of Golden Ending from another game?"
+
+[Congrats you found an easteregg, check the "Rewind History" for more information]
+
+[[Restart|intro]]
+
+
+:: ee3 [EasterEgg] {"position":"925,1150","size":"100,100"}
+Maybe her rejecting me is a Nexus Event or something.
+I'm just waiting for The Watcher or the TVA to confirm it.
+
+[Congrats you found an easteregg, check the "Rewind History" for more information]
+
+[[Stop|exStop]]  
+[[Touch|exTouch]]  
+[[Recall|exRecall]]  
+[[Compliment|exCompliment]]
 
 
 :: exCompliment [End] {"position":"1475,1200","size":"100,100"}
@@ -596,6 +654,8 @@ one more time...
 [[talk|talkAgain]] unlocked after talkOnIntro
 
 [[scream|screamOnIntro]] unlocked after crApproach
+
+[[smile|ee2]] hidden easterEgg
 
 
 :: lookAtCorridor {"position":"675,400","size":"100,100"}
@@ -1041,6 +1101,8 @@ This is it.
 [[Hide|crHide]]
 
 [[Confess|crConfessAlt]] unlocked after crConfess and crApproach
+
+[[Walk|ee1]] hidden easterEgg, unlocked after crApproach
 
 
 :: waitOnIntro [End] {"position":"525,600","size":"100,100"}
