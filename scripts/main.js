@@ -759,6 +759,10 @@ document.addEventListener("DOMContentLoaded", () => {
             visitedStates[nextStateName] = true;
             localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
         }
+        if (!unlockedStates[nextState]) {
+            unlockedStates[nextState] = true;
+            localStorage.setItem('unlockedStates', JSON.stringify(unlockedStates));
+        }
 
         if (nextStateName === 'the_end') {
             // Hide the input bar entirely
