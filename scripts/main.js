@@ -31,11 +31,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const l = "Look at what?";
     const s = "Press ENTER! You will do it!";
 
+    // Reflexion messages controls
     let reflectionIndex = 0;
     if (localStorage.getItem('reflectionIndex')) {
         reflectionIndex = parseInt(localStorage.getItem('reflectionIndex'));
     }
 
+    // Easter eggs triggers
+    const easterEggs = {
+        "walk": { 
+            state: "w_cr_r", 
+            target: "ee1", 
+            requiredStates: ["cr_approach"],
+        },
+        "smile": { 
+            state: "intro", 
+            target: "ee2", 
+            requiredStates: [],
+        },
+        "wait": { 
+            state: "cr_approach", 
+            target: "ee3", 
+            requiredStates: [],
+        }
+    };
+    
     // Get references to elements
     // Title Screen
     const titleScreen       = document.getElementById('titleScreen');
@@ -249,6 +269,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         Object.keys(storyStates).forEach((state) => {
             const stateContent = storyStates[state];
+
+            // Skip easter egg states unless they are unlocked
+            if (state.startsWith("ee") && !unlockedStates[state]) {
+                return; // Do not add undiscovered easter eggs to history
+            }
 
             // Check if the state has the history format
             if (stateContent.length > 3) {
@@ -627,6 +652,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 500);
             }
         }
+
+        for (const word in easterEggs) { // Input bar highlights for easter eggs
+            const egg = easterEggs[word];
+            // Check if the word matches, the current state is correct, and ALL required states were visited
+            if (inputValue === word && currentState === egg.state && egg.requiredStates.every(state => visitedStates[state])) {
+                playerInput.classList.add("golden");
+                return;
+            }
+        }
+        playerInput.classList.remove("golden");
     
         if (choices.length === 0) {
             return;
@@ -701,11 +736,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const choices       = stateContent[1];
 
         // Trigger easter-egg
-        if (inputValue === 'easter-egg' || inputValue === 'easter egg' || inputValue === 'easteregg') {
-            container.innerHTML = '';
-            const easterEggs    = ['ee1', 'ee2', 'ee3'];
-            const random        = Math.floor(Math.random() * easterEggs.length);
-            proceedToNextState(easterEggs[random]);
+        for (const word in easterEggs) {
+            const egg = easterEggs[word];
+    
+            if (inputValue === word && currentState === egg.state && egg.requiredStates.every(state => visitedStates[state])) {
+                proceedToNextState(egg.target);
+                return;
+            }
         }
 
         // If the current state is 'final'
@@ -786,6 +823,40 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     
+        // Palette changes for eastereggs
+        playerInput.classList.remove("golden");
+        // Check if the state starts with "ee" (for Easter Eggs)
+        if (nextStateName.startsWith("ee")) {
+            document.body.classList.remove('pink-palette', 'blue-palette');
+            document.body.classList.add('gold-palette');
+
+            if (glitchEnabled) {
+                document.body.classList.add('glitchy-transition');
+                playGlitchSound();
+    
+                setTimeout(() => {
+                    document.body.classList.remove('glitchy-transition');
+                }, 1000);
+            }
+        } else if (currentState.startsWith("ee")) {
+            // Revert to the previous palette if leaving an easter egg
+            document.body.classList.remove('gold-palette');
+            if (isPinkPalette) {
+                document.body.classList.add('pink-palette');
+            } else {
+                document.body.classList.add('blue-palette');
+            }
+
+            if (glitchEnabled) {
+                document.body.classList.add('glitchy-transition');
+                playGlitchSound();
+    
+                setTimeout(() => {
+                    document.body.classList.remove('glitchy-transition');
+                }, 1000);
+            }
+        }
+
         if (nextStateName === 'intro' || nextStateName === 'reflection') {
             alternate = false;
             container.innerHTML = '';   // Clear the story container

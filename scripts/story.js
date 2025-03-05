@@ -1108,7 +1108,9 @@ I can hear it though—the moment I’m out of sight, she’s basically screamin
 
 Nailed it.
 
-Now let's jump into a vat of acid.`,
+Now let's jump into a vat of acid.
+
+[Congrats you found an easteregg, check the "Rewind History" for more information]`,
         [],
         e,
         [
@@ -1122,7 +1124,10 @@ Now let's jump into a vat of acid.`,
  
 Clare is at your shoulder with a pack of biscuits and some chocolate, "Why the big smile?" She sees the brunette at the end of aisle, "Oh I see..." and slaps your wrist playfully. You roll your eyes, "I was remembering Rome actually." She rolls her eyes, "Really, you're such an old romantic..."
 
-Wait? Where am I? What was this text? Some sort of Golden Ending from another reality?`,
+---
+"Wait? Where am I? What was this text? Some sort of Golden Ending from another game?"
+
+[Congrats you found an easteregg, check the "Rewind History" for more information]`,
         [],
         e,
         [
@@ -1133,9 +1138,16 @@ Wait? Where am I? What was this text? Some sort of Golden Ending from another re
     ],
     'ee3': [
         `Maybe her rejecting me is a Nexus Event or something.
-        I'm just waiting for The Watcher or the TVA to confirm it.`,
-        [],
-        e,
+I'm just waiting for The Watcher or the TVA to confirm it.
+
+[Congrats you found an easteregg, check the "Rewind History" for more information]`,
+        [
+            ['stop', 'ex_stop'], 
+            ['touch', 'ex_touch'], 
+            ['recall', 'ex_recall'],
+            ['compliment', 'ex_compliment'],
+        ],
+        d,
         [
             `Easter-Egg - Nexus Event`,
             `Waiting for The Watcher`,

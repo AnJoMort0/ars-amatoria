@@ -35,6 +35,15 @@ body {
     background-color: var(--background-color);
     color: var(--text-color-1);
 }
+.gold-palette {
+    --background-color: #3b2b16; 
+    --accent-background-color: #5a4221;
+    --text-color-1: #f3e5ab;
+    --text-color-2: #d4c28a;
+    --contrast-color: #ffcc00;
+    background-color: var(--background-color);
+    color: var(--text-color-1);
+}
 
 
 .main-content {
@@ -148,6 +157,14 @@ body {
             border-radius: 8px;
             box-sizing: border-box;
         }
+            .player-input.golden {
+                border: 3px solid gold !important;
+                color: #f3e5ab;
+                border: 2px solid #f3e5ab;
+                box-shadow: 0 0 15px gold;
+                filter: brightness(1.1);
+                transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+            }
 
 .control-panel {
     width: 200px;
