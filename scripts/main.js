@@ -759,8 +759,8 @@ document.addEventListener("DOMContentLoaded", () => {
             visitedStates[nextStateName] = true;
             localStorage.setItem('visitedStates', JSON.stringify(visitedStates));
         }
-        if (!unlockedStates[nextState]) {
-            unlockedStates[nextState] = true;
+        if (!unlockedStates[nextStateName]) {
+            unlockedStates[nextStateName] = true;
             localStorage.setItem('unlockedStates', JSON.stringify(unlockedStates));
         }
 
