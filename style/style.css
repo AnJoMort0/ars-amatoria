@@ -491,6 +491,58 @@ body {
         50% { transform: translateY(2px) rotate(2deg); }
         100% { transform: translateY(-2px) rotate(-2deg); }
     }
+    .about-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #2f1a26;
+        color: #e0c3c3;
+        border: 2px solid #e0c3c3;
+        padding: 8px 16px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+        .about-button:hover {
+            filter: brightness(0.7);
+        }
+        .about-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            max-width: 600px;
+            background-color: var(--background-color);
+            color: var(--text-color-1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .about-popup a {
+            color: var(--contrast-color);
+            text-decoration: none;
+        }
+        
+        .about-popup a:hover {
+            text-decoration: underline;
+        }
+        
+        .about-popup.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .about-popup.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     #discordContainer {
         position: absolute;
         bottom: 25px;
