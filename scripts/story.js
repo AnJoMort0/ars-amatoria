@@ -1116,7 +1116,7 @@ Now let's jump into a vat of acid.
         [
             `Easter-Egg - Acid`,
             `Jump into a vat of acid`,
-            `Reference to Rick and Morty S04 E08, one of the inspirations for the game.`,
+            `Reference to Rick and Morty S04 E08, one of the inspirations for the game. The name "Jessica" for the crush was a direct reference to this scene.`,
         ],
     ],
     'ee2': [
@@ -1133,7 +1133,7 @@ Clare is at your shoulder with a pack of biscuits and some chocolate, "Why the b
         [
             `Easter-Egg - Gnocchi`,
             `Remember Clare`,
-            `Reference to Aisle, the game that served as the main inspiration for this game.`,
+            `Reference to Aisle, the game that served as the main inspiration for this game. Tha name "Sam" for the main character is actually a reference to Sam Barlow, the creator of Aisle`,
         ],
     ],
     'ee3': [
@@ -1151,7 +1151,7 @@ I'm just waiting for The Watcher or the TVA to confirm it.
         [
             `Easter-Egg - Nexus Event`,
             `Waiting for The Watcher`,
-            `Reference to What If's Evil Strange's tragedic story, a minor inspiration for the mechanics of this game.`,
+            `Reference to What If's Evil Strange's tragedic story, a minor inspiration for the mechanics of this game, mostly the hopeless search for a working solution.`,
         ],
     ],
 
@@ -1161,3 +1161,7 @@ I'm just waiting for The Watcher or the TVA to confirm it.
 export function getOriginalStoryStates() {
     return JSON.parse(JSON.stringify(storyStates)); // Return a copy of the original state
 }
+
+// I wanted to mention somewhere just in case that the main character's name "Sam" is a reference to the creator of "Aisle", Sam Barlow.
+// Also, Paul Nasso is a reference to "Publius Ovidius Naso", the writter of "Ars Amatoria", one of the oldest pick-up tutorial.
+// And as stated in the Easter Eggs, Jessica is a reference to Rick and Morty, and most specifically S04 E08, which in combination with Aisle and Ars Amatoria, gave me the idea for the game.
