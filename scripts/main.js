@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //Game Elements
     const mainContent   = document.getElementById('mainContent');
     const container     = document.getElementById('container');
+    const scrollArrow   = document.getElementById('scrollToBottom');
     const playerInput   = document.getElementById('playerInput');
     const inputBar      = document.getElementById('inputBar');
 
@@ -144,6 +145,46 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listeners for music and sound toggles
     document.getElementById('musicToggle').addEventListener('click', toggleMusic);
     document.getElementById('soundToggle').addEventListener('click', toggleSound);
+
+    // Scroll down button - Moderately chatGPT assisted
+    function updateScrollArrow() {
+        if (container.scrollHeight - container.scrollTop > container.clientHeight + 30) {
+            scrollArrow.classList.add('visible');
+        } else {
+            scrollArrow.classList.remove('visible');
+        }
+        requestAnimationFrame(updateScrollArrow);
+    }
+    requestAnimationFrame(updateScrollArrow);
+
+    scrollArrow.addEventListener('click', () => {
+        let scrollTarget    = container.scrollHeight;
+        let scrollSpeed     = 5;
+        let isScrolling     = true; // This is essential to prevent this from getting stuck in a loop
+    
+        function smoothScrollDown() {
+            if (!isScrolling) return; // Stop scrolling when interrupted
+    
+            let currentScroll = container.scrollTop;
+            let remainingDistance = scrollTarget - currentScroll;
+    
+            if (remainingDistance > 1) {
+                let step = Math.max(remainingDistance * 0.1, 2); // Exponential decay
+                container.scrollTop += step;
+                requestAnimationFrame(smoothScrollDown);
+            } else {
+                container.scrollTop = scrollTarget; // Snap to bottom
+                isScrolling = false; // Stop loop
+            }
+        }
+    
+        // Allow manual scrolling interruption
+        container.addEventListener("wheel", () => { isScrolling = false; });
+        container.addEventListener("touchmove", () => { isScrolling = false; });
+        container.addEventListener("keydown", (event) => { if (event.key === "ArrowUp" || event.key === "PageUp") isScrolling = false; });
+    
+        smoothScrollDown();
+    });      
 
     // Auto-scroll control
     let autoScrollEnabled = true;
