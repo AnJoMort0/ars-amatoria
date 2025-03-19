@@ -344,6 +344,10 @@ document.addEventListener("DOMContentLoaded", () => {
         animationInProgress = true;
         let currentAnimSpeed;
         let isSpacePressed  = false;
+
+        setTimeout(() => {
+            container.scrollTop = container.scrollHeight; // nudge down even when the autoscroll is off so that it becomes easier to understand the text is being written
+        }, 100);
     
         // Start the sound and loop it until the typing animation finishes
         function startTypingSound() {
@@ -377,8 +381,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // Skip the animation
             element.innerHTML  += text;
             animationInProgress = false;
-            // Scroll to bottom after adding text
-            container.scrollTop = container.scrollHeight;
             if (callback) callback();
             return;
         }
@@ -391,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 index++;
                 // Scroll to bottom after adding a character if auto-scroll is enabled
                 if (autoScrollEnabled) {
-                    container.scrollTop = container.scrollHeight;
+                    container.scrollTop += 7;
                 }
                 setTimeout(typeNextChar, currentAnimSpeed);
             } else {
